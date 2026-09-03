@@ -1,0 +1,6 @@
+{
+  "name": "BhoomiDrishti - Rural Land Survey & Resurvey GIS System",
+  "description": "Technology-driven GIS land survey & resurvey platform comparing cadastral records with modern drone/DGPS surveys, automated mismatch & encroachment detection, field verification workflows, and digital mutation tracking.",
+  "requestFramePermissions": ["geolocation", "camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
