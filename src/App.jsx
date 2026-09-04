@@ -206,7 +206,7 @@ export function App() {
       />
 
       {/* Main App Layout */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 min-h-0 flex overflow-hidden">
         {/* Sidebar */}
         <Sidebar
           activeView={activeView}
@@ -217,7 +217,7 @@ export function App() {
         />
 
         {/* Dynamic Center View Container */}
-        <main className="flex-1 overflow-y-auto relative bg-slate-50">
+        <main className="flex-1 min-w-0 overflow-y-auto relative bg-slate-50">
           {activeView === 'dashboard' && (
             <DashboardView
               stats={stats}

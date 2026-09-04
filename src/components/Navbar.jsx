@@ -30,7 +30,7 @@ export const Navbar = ({
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="px-4 py-3 flex items-center justify-between gap-4">
+      <div className="px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand */}
         <div 
           id="brand-logo-btn"
@@ -42,7 +42,7 @@ export const Navbar = ({
               <Layers className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
             </div>
           </div>
-          <div>
+          <div className="hidden sm:block">
             <div className="flex items-center gap-2">
               <h1 className="font-bold text-lg tracking-tight text-emerald-800 flex items-center gap-1.5">
                 <span>BhoomiDrishti</span>

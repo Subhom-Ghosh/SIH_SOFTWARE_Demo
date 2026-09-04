@@ -3,7 +3,7 @@ import { Sparkles, Layers, ArrowRight, Cpu } from 'lucide-react';
 
 export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
   const [selectedImage, setSelectedImage] = useState(
-    'https://png.pngtree.com/thumb_back/fw800/background/20240522/pngtree-aerial-photograph-of-green-agricultural-plots-with-vacant-land-waiting-to-image_15688974.jpg'
+    'https://thumbs.dreamstime.com/b/aerial-drone-view-field-trees-forest-agriculture-land-top-look-to-meadow-near-village-farm-beautiful-green-fresh-crop-146036946.jpg'
   );
   const [isProcessing, setIsProcessing] = useState(false);
   const [aiResults, setAiResults] = useState({
@@ -133,45 +133,45 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
               {/* Parcel 1 */}
               <polygon
                 points="100,60 380,50 360,220 90,210"
-                fill="rgba(16, 185, 129, 0.25)"
+                fill="rgba(74, 122, 69)"
                 stroke="#10b981"
                 strokeWidth="3"
                 strokeDasharray="6, 3"
               />
-              <text x="210" y="140" fill="#10b981" fontSize="14" fontWeight="bold" textAnchor="middle">
+              <text x="210" y="140" fill="#ffffff" fontSize="14" fontWeight="bold" textAnchor="middle">
                 P-101 (Conf: 96%)
               </text>
 
               {/* Parcel 2 */}
               <polygon
                 points="390,50 720,40 700,210 370,220"
-                fill="rgba(16, 185, 129, 0.25)"
+                fill="rgba(74, 122, 69)"
                 stroke="#10b981"
                 strokeWidth="3"
               />
-              <text x="540" y="130" fill="#10b981" fontSize="14" fontWeight="bold" textAnchor="middle">
+              <text x="540" y="130" fill="#ffffff" fontSize="14" fontWeight="bold" textAnchor="middle">
                 P-102 (Conf: 94%)
               </text>
 
               {/* Parcel 3 (Shift detected) */}
               <polygon
                 points="90,230 360,240 340,410 80,390"
-                fill="rgba(2700, 63, 94, 0.3)"
+                fill="rgba(255, 122, 122)"
                 stroke="#f43f3f"
                 strokeWidth="3.5"
               />
-              <text x="200" y="320" fill="#f43f5e" fontSize="14" fontWeight="bold" textAnchor="middle">
+              <text x="200" y="320" fill="#ffffff" fontSize="14" fontWeight="bold" textAnchor="middle">
                 P-125 (Shift: 1.8m)
               </text>
 
               {/* Parcel 4 */}
               <polygon
                 points="380,240 690,230 670,400 350,410"
-                fill="rgba(16, 800, 129, 0.25)"
+                fill="rgba(74, 122, 69)"
                 stroke="#10b981"
                 strokeWidth="3"
               />
-              <text x="520" y="320" fill="#10b981" fontSize="14" fontWeight="bold" textAnchor="middle">
+              <text x="520" y="320" fill="#ffffff" fontSize="14" fontWeight="bold" textAnchor="middle">
                 P-104 (Conf: 95%)
               </text>
             </svg>

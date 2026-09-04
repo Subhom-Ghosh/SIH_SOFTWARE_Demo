@@ -362,9 +362,9 @@ export const GisMapView = ({
       <div ref={mapContainerRef} className="w-full h-full z-0 cursor-crosshair" />
 
       {/* Top Floating Map Controls Toolbar */}
-      <div className="absolute top-4 left-4 z-10 flex flex-wrap items-center gap-2 max-w-[calc(100%-420px)]">
+      <div className="absolute top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-auto z-10 flex flex-wrap items-center gap-2 max-w-none sm:max-w-[calc(100%-420px)]">
         {/* Search Input */}
-        <div className="relative bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-xl shadow-xl flex items-center px-3 py-1.5 min-w-[240px]">
+        <div className="relative bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-xl shadow-xl flex items-center px-3 py-1.5 w-full sm:w-auto sm:min-w-[240px]">
           <Search className="w-4 h-4 text-slate-400 mr-2 shrink-0" />
           <input
             id="map-plot-search-input"
@@ -451,7 +451,7 @@ export const GisMapView = ({
 
       {/* Drawing Active Overlay Floating Bar */}
       {isDrawingMode && (
-        <div className="absolute top-16 left-4 z-20 bg-slate-900/95 border border-emerald-500/60 rounded-xl p-3 shadow-2xl backdrop-blur-md max-w-md text-xs text-slate-200">
+        <div className="absolute top-16 left-2 right-2 sm:left-4 sm:right-auto z-20 bg-slate-900/95 border border-emerald-500/60 rounded-xl p-3 shadow-2xl backdrop-blur-md max-w-md text-xs text-slate-200">
           <div className="flex items-center justify-between font-bold text-emerald-400 mb-1">
             <span className="flex items-center gap-1.5">
               <PenTool className="w-4 h-4" />
@@ -502,7 +502,7 @@ export const GisMapView = ({
 
       {/* Right Slide-Out: Selected Parcel Inspection Panel */}
       {selectedParcel && (
-        <div className="absolute top-4 right-4 bottom-4 w-96 z-20 bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-5 flex flex-col justify-between overflow-y-auto text-slate-100 animate-in slide-in-from-right-4 duration-300">
+        <div className="hidden sm:flex absolute top-4 right-4 bottom-4 sm:w-96 z-20 bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-5 flex-col justify-between overflow-y-auto text-slate-100 animate-in slide-in-from-right-4 duration-300">
           <div>
             {/* Header */}
             <div className="flex items-start justify-between pb-3 border-b border-slate-800">

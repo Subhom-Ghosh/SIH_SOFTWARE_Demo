@@ -82,10 +82,10 @@ export const Sidebar = ({
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 h-[calc(100vh-80px)] select-none">
+    <aside className="w-14 md:w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 h-[calc(100vh-80px)] select-none">
       {/* Navigation List */}
-      <div className="p-3 space-y-1 overflow-y-auto">
-        <div className="px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+      <div className="p-1.5 md:p-3 space-y-1 overflow-y-auto">
+        <div className="hidden md:block px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 tracking-wider">
           Resurvey Workflow
         </div>
 
@@ -97,7 +97,7 @@ export const Sidebar = ({
               key={item.id}
               id={`sidebar-item-${item.id}`}
               onClick={() => onNavigate(item.id)}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all group ${
+              className={`w-full flex items-center justify-center md:justify-between px-2 md:px-3 py-2.5 rounded-xl text-left transition-all group ${
                 isActive
                   ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-950/40 font-semibold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/70 font-medium'
@@ -107,7 +107,7 @@ export const Sidebar = ({
                 <div className={`p-1.5 rounded-lg ${isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'}`}>
                   <Icon className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="hidden md:block min-w-0">
                   <div className="text-xs truncate">{item.label}</div>
                   <div className={`text-[10px] truncate ${isActive ? 'text-emerald-100' : 'text-slate-400'}`}>
                     {item.subtitle}
@@ -117,7 +117,7 @@ export const Sidebar = ({
 
               {item.badge && (
                 <span
-                  className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                  className={`hidden md:inline-block px-1.5 py-0.5 rounded text-[10px] font-bold ${
                     item.badgeColor ? `${item.badgeColor} text-white` : 'bg-slate-700 text-slate-200'
                   }`}
                 >
@@ -130,7 +130,7 @@ export const Sidebar = ({
       </div>
 
       {/* Bottom GIS Engine Status & Auto-Detect Trigger */}
-      <div className="p-3 border-t border-slate-800 bg-slate-950/60">
+      <div className="hidden md:block p-3 border-t border-slate-800 bg-slate-950/60">
         <div className="bg-slate-800/80 rounded-xl p-3 border border-slate-700/60 mb-2">
           <div className="flex items-center justify-between text-xs text-slate-300 mb-1.5">
             <span className="flex items-center gap-1.5 font-semibold text-emerald-400">

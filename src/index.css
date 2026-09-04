@@ -4,6 +4,7 @@
 body {
   background: #f8fafc;
   color: #0f172a;
+  overflow-x: hidden;
 }
 
 [class*="bg-slate-950"] { background-color: #f8fafc !important; }
