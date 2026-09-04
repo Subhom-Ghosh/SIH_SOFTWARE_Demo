@@ -103,6 +103,11 @@ export const GisMapView = ({
 
     mapInstanceRef.current = map;
 
+    const resizeObserver = new ResizeObserver(() => {
+      map.invalidateSize({ animate: false });
+    });
+    resizeObserver.observe(mapContainerRef.current);
+
     // Layer groups
     layersGroupRef.current.cadastral.addTo(map);
     layersGroupRef.current.surveyed.addTo(map);
@@ -119,6 +124,7 @@ export const GisMapView = ({
         }
         mapInstanceRef.current = null;
       }
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -173,6 +179,15 @@ export const GisMapView = ({
       });
       overlay.addTo(map);
       layersGroupRef.current.droneOverlay = overlay;
+
+      if (window.innerWidth < 640) {
+        map.fitBounds(imageBounds, {
+          padding: [16, 16],
+          maxZoom: 19,
+          animate: false
+        });
+        map.setZoom(Math.min(map.getZoom() + 2, 19), { animate: false });
+      }
     }
   }, [showDroneMosaic, droneOpacity]);
 
@@ -357,7 +372,7 @@ export const GisMapView = ({
   };
 
   return (
-    <div className="relative w-full h-[calc(100vh-80px)] flex overflow-hidden bg-slate-950">
+    <div className="relative w-full h-[calc(100dvh-80px)] sm:h-[calc(100vh-80px)] flex overflow-hidden bg-slate-950">
       {/* Leaflet Map Canvas */}
       <div ref={mapContainerRef} className="w-full h-full z-0 cursor-crosshair" />
 

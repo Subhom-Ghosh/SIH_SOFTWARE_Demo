@@ -82,7 +82,7 @@ export const Sidebar = ({
   ];
 
   return (
-    <aside className="w-14 md:w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 h-[calc(100vh-80px)] select-none">
+    <aside className="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex-col justify-between shrink-0 h-[calc(100vh-80px)] select-none">
       {/* Navigation List */}
       <div className="p-1.5 md:p-3 space-y-1 overflow-y-auto">
         <div className="hidden md:block px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 tracking-wider">
