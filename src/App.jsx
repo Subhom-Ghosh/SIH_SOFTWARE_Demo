@@ -14,7 +14,7 @@ import { SurveyManagementView } from './components/SurveyManagementView';
 
 export function App() {
   // Navigation & Active View
-  const [activeView, setActiveView] = useState('dashboard');
+  const [activeView, setActiveView] = useState('map');
 
   // User Profile & Role
   const [currentUser, setCurrentUser] = useState({
@@ -196,7 +196,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-white">
       {/* Top Navigation Bar */}
       <Navbar
         currentUser={currentUser}
@@ -217,7 +217,7 @@ export function App() {
         />
 
         {/* Dynamic Center View Container */}
-        <main className="flex-1 overflow-y-auto relative bg-slate-950">
+        <main className="flex-1 overflow-y-auto relative bg-slate-50">
           {activeView === 'dashboard' && (
             <DashboardView
               stats={stats}

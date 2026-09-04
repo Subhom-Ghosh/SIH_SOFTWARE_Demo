@@ -330,19 +330,6 @@ export const GisMapView = ({
     }
   }, [drawPoints]);
 
-  // Zoom to Selected Parcel
-  useEffect(() => {
-    if (!selectedParcel || !mapInstanceRef.current) return;
-    try {
-      const geom = selectedParcel.surveyedGeometry || selectedParcel.cadastralGeometry;
-      const coords = geom.coordinates[0];
-      const bounds = L.latLngBounds(coords.map(([lng, lat]) => [lat, lng]));
-      mapInstanceRef.current.flyToBounds(bounds, { padding: [80, 80], maxZoom: 19, duration: 1.2 });
-    } catch (e) {
-      console.warn('Failed to fly to bounds:', e);
-    }
-  }, [selectedParcel]);
-
   const resetView = () => {
     if (!mapInstanceRef.current) return;
     mapInstanceRef.current.flyTo([25.3225, 82.9675], 17, { duration: 1 });

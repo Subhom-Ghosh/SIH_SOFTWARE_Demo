@@ -272,7 +272,7 @@ export const ComparisonView = ({
               <GitCompare className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
+              <h2 className="text-xl font-extrabold text-black tracking-tight flex items-center gap-2">
                 <span>Old vs. Modern Survey Geometric Comparison</span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-normal">
                   Cadastral 1359F ↔ DGPS/Drone Resurvey
@@ -287,7 +287,7 @@ export const ComparisonView = ({
 
         {/* Parcel Selector Dropdown */}
         <div className="flex items-center gap-3">
-          <div className="text-xs text-slate-400 font-medium">Select Parcel:</div>
+          <div className="text-xs text-black font-medium">Select Parcel:</div>
           <select
             id="compare-parcel-select"
             value={activeParcelId}
@@ -296,7 +296,7 @@ export const ComparisonView = ({
               const p = parcels.find(item => item.id === e.target.value);
               if (p) onSelectParcel(p);
             }}
-            className="bg-slate-800 border border-slate-700 text-white text-xs font-semibold px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer min-w-[200px]"
+            className="bg-slate-800 border border-slate-700 text-black text-xs font-semibold px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer min-w-[200px]"
           >
             {parcels.map((p) => (
               <option key={p.id} value={p.id} className="bg-slate-900 text-slate-200">

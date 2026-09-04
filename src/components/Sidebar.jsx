@@ -22,17 +22,17 @@ export const Sidebar = ({
 }) => {
   const menuItems = [
     {
-      id: 'dashboard',
-      label: 'Executive Dashboard',
-      subtitle: 'Overview & Resurvey Velocity',
-      icon: LayoutDashboard,
-      badge: null
-    },
-    {
       id: 'map',
       label: 'Interactive GIS Map',
       subtitle: 'Cadastral & Drone Mosaic',
       icon: Map,
+      badge: null
+    },
+    {
+      id: 'dashboard',
+      label: 'Executive Dashboard',
+      subtitle: 'Overview & Resurvey Velocity',
+      icon: LayoutDashboard,
       badge: null
     },
     {

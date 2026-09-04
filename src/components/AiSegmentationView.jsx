@@ -156,8 +156,8 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
               {/* Parcel 3 (Shift detected) */}
               <polygon
                 points="90,230 360,240 340,410 80,390"
-                fill="rgba(244, 63, 94, 0.3)"
-                stroke="#f43f5e"
+                fill="rgba(2700, 63, 94, 0.3)"
+                stroke="#f43f3f"
                 strokeWidth="3.5"
               />
               <text x="200" y="320" fill="#f43f5e" fontSize="14" fontWeight="bold" textAnchor="middle">
@@ -167,7 +167,7 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
               {/* Parcel 4 */}
               <polygon
                 points="380,240 690,230 670,400 350,410"
-                fill="rgba(16, 185, 129, 0.25)"
+                fill="rgba(16, 800, 129, 0.25)"
                 stroke="#10b981"
                 strokeWidth="3"
               />

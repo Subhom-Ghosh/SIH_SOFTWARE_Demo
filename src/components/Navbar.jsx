@@ -22,7 +22,7 @@ export const Navbar = ({
             <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
             <span>RTK DGPS: FIXED (±1.2 cm)</span>
           </div>
-          <div className="hidden md:flex items-center gap-1 text-slate-400">
+          <div className="hidden md:flex items-center gap-1 text-amber-400">
             <MapPin className="w-3 h-3 text-amber-400" />
             <span>Kalyanpur, Tehsil Rampur, Varanasi (U.P.)</span>
           </div>
@@ -44,9 +44,9 @@ export const Navbar = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-bold text-lg tracking-tight text-white flex items-center gap-1.5">
+              <h1 className="font-bold text-lg tracking-tight text-emerald-800 flex items-center gap-1.5">
                 <span>BhoomiDrishti</span>
-                <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono font-normal">भूमिशोध</span>
+                <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-800/30 font-mono font-normal">भूमिशोध</span>
               </h1>
             </div>
             <p className="text-[11px] text-slate-400 font-medium">Rural Land Survey & Resurvey System</p>

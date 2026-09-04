@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+/* Shared light palette for the dashboard's existing utility-based components. */
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+[class*="bg-slate-950"] { background-color: #f8fafc !important; }
+[class*="bg-slate-900"] { background-color: #ffffff !important; }
+[class*="bg-slate-800"] { background-color: #f1f5f9 !important; }
+[class*="bg-slate-700"] { background-color: #e2e8f0 !important; }
+[class*="bg-slate-600"] { background-color: #cbd5e1 !important; }
+
+[class*="border-slate-800"],
+[class*="border-slate-700"] { border-color: #cbd5e1 !important; }
+
+[class~="text-slate-100"],
+[class~="text-slate-200"],
+[class~="text-slate-300"],
+[class~="text-slate-400"],
+[class~="text-slate-500"] { color: #334155 !important; }
+
+[class*="from-slate-"],
+[class*="via-slate-"] {
+  --tw-gradient-from: #ffffff var(--tw-gradient-from-position) !important;
+  --tw-gradient-via: #f8fafc var(--tw-gradient-via-position) !important;
+}
+
+/* Previously dark status surfaces remain clearly visible on light backgrounds. */
+[class*="bg-emerald-950"] { background-color: #ecfdf5 !important; }
+[class*="bg-indigo-950"] { background-color: #eef2ff !important; }
+[class*="bg-rose-950"], [class*="bg-red-950"] { background-color: #fff1f2 !important; }
+[class*="bg-amber-950"] { background-color: #fffbeb !important; }
+[class*="bg-cyan-950"] { background-color: #ecfeff !important; }
+[class*="bg-pink-950"] { background-color: #fdf2f8 !important; }
