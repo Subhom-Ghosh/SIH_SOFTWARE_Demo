@@ -24,7 +24,7 @@ export const Navbar = ({
           </div>
           <div className="hidden md:flex items-center gap-1 text-amber-400">
             <MapPin className="w-3 h-3 text-amber-400" />
-            <span>Kalyanpur, Tehsil Rampur, Varanasi (U.P.)</span>
+            <span>Madhabpur, Block Bardhaman Sadar, Purba Bardhaman (W.B.)</span>
           </div>
         </div>
       </div>
@@ -39,14 +39,14 @@ export const Navbar = ({
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-600 to-indigo-600 p-0.5 shadow-lg shadow-emerald-900/30 flex items-center justify-center">
             <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-              <Layers className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+              <img src="public\assets\aistudio\image.png" className="w-5 h-5 object-contain group-hover:scale-110 transition-transform" />
             </div>
           </div>
           <div className="hidden sm:block">
             <div className="flex items-center gap-2">
               <h1 className="font-bold text-lg tracking-tight text-emerald-800 flex items-center gap-1.5">
-                <span>BhoomiDrishti</span>
-                <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-800/30 font-mono font-normal">भूमिशोध</span>
+                <span>BhuRaksha</span>
+                <span className="text-xs  px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-900 border border-emerald-800/30 font-mono font-normal">ভুরক্ষা</span>
               </h1>
             </div>
             <p className="text-[11px] text-slate-400 font-medium">Rural Land Survey & Resurvey System</p>

@@ -166,10 +166,10 @@ export const OwnershipMutationView = ({
             {/* National Revenue Header Format */}
             <div className="border-b-2 border-slate-800 pb-4 text-center">
               <div className="text-[11px] uppercase font-bold tracking-widest text-emerald-400">
-                Department of Land Resources &bull; Government of Uttar Pradesh
+                Department of Land Resources &bull; Government of West Bengal
               </div>
               <h3 className="text-lg font-black text-white mt-1">
-                नकल खतौनी / Form 7-12 Record of Rights
+                খতিয়ান নকল / Form 7-12 Record of Rights
               </h3>
               <div className="text-xs text-slate-400 mt-0.5">
                 Village: <span className="text-slate-200 font-semibold">{selectedParcel.village} (Code: 20491)</span> &bull; Tehsil: {selectedParcel.tehsil} &bull; Fasli Year: 1431-1436
@@ -181,12 +181,12 @@ export const OwnershipMutationView = ({
               <table className="w-full text-left text-xs border border-slate-800">
                 <thead className="bg-slate-950 text-slate-400 uppercase text-[10px] font-bold border-b border-slate-800">
                   <tr>
-                    <th className="py-2.5 px-3 border-r border-slate-800">Khata # (खाता)</th>
+                    <th className="py-2.5 px-3 border-r border-slate-800">Khata # (খাতা)</th>
                     <th className="py-2.5 px-3 border-r border-slate-800">Khasra / Plot #</th>
-                    <th className="py-2.5 px-3 border-r border-slate-800">Landholder (खातेदार)</th>
+                    <th className="py-2.5 px-3 border-r border-slate-800">Landholder (খাতেদার)</th>
                     <th className="py-2.5 px-3 border-r border-slate-800">Tenure Classification</th>
                     <th className="py-2.5 px-3 border-r border-slate-800">Recorded Area</th>
-                    <th className="py-2.5 px-3">Land Revenue (लगान)</th>
+                    <th className="py-2.5 px-3">Land Revenue (খাজনা)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800 text-slate-200">
@@ -201,12 +201,12 @@ export const OwnershipMutationView = ({
                       {selectedParcel.ownerName}
                       {selectedParcel.coOwners && (
                         <div className="text-[10px] text-slate-400 font-normal mt-0.5">
-                          सहखातेदार: {selectedParcel.coOwners.join(', ')}
+                          সহ-খাতেদার: {selectedParcel.coOwners.join(', ')}
                         </div>
                       )}
                     </td>
                     <td className="py-3 px-3 border-r border-slate-800">
-                      संक्रमणीय भूमिधर (Bhumidhar with Transferable Rights)
+                      হস্তান্তরযোগ্য ভূমিধারী (Bhumidhar with Transferable Rights)
                     </td>
                     <td className="py-3 px-3 border-r border-slate-800 font-mono text-amber-300">
                       {selectedParcel.recordedAreaAcre} Ac ({selectedParcel.recordedAreaSqM} m²)
@@ -389,10 +389,10 @@ export const OwnershipMutationView = ({
                   onChange={(e) => setMutationType(e.target.value)}
                   className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-2.5 focus:outline-none cursor-pointer"
                 >
-                  <option value="Inheritance (Virasat)">Inheritance (Virasat / वरासत)</option>
-                  <option value="Sale Deed (Bainama)">Sale Deed (Bainama / बैनामा)</option>
-                  <option value="Partition (Batwara)">Partition (Batwara / बंटवारा)</option>
-                  <option value="Gift / Danpatra">Gift / Danpatra (दानपत्र)</option>
+                  <option value="Inheritance (Virasat)">Inheritance (Virasat / উত্তরাধিকার)</option>
+                  <option value="Sale Deed (Bainama)">Sale Deed (Bainama / বিক্রয় দলিল)</option>
+                  <option value="Partition (Batwara)">Partition (Batwara / বণ্টন)</option>
+                  <option value="Gift / Danpatra">Gift / Danpatra (দানপত্র)</option>
                   <option value="Court Decree">Revenue Court Decree</option>
                 </select>
               </div>

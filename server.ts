@@ -124,11 +124,11 @@ async function startServer() {
       recordedAreaHectare: Number((Number(req.body.recordedAreaAcre || 1.0) * 0.4047).toFixed(4)),
       recordedAreaSqM: Math.round(Number(req.body.recordedAreaAcre || 1.0) * 4047),
       landType: req.body.landType || 'Agricultural',
-      village: req.body.village || 'Kalyanpur',
-      gramPanchayat: req.body.gramPanchayat || 'Kalyanpur',
-      tehsil: req.body.tehsil || 'Rampur',
-      district: req.body.district || 'Varanasi',
-      state: req.body.state || 'Uttar Pradesh',
+      village: req.body.village || 'Madhabpur',
+      gramPanchayat: req.body.gramPanchayat || 'Madhabpur',
+      tehsil: req.body.tehsil || 'Bardhaman Sadar',
+      district: req.body.district || 'Purba Bardhaman',
+      state: req.body.state || 'West Bengal',
       surveyStatus: req.body.surveyStatus || 'Pending Verification',
       cadastralGeometry: req.body.cadastralGeometry,
       surveyedGeometry: req.body.surveyedGeometry,
@@ -172,7 +172,7 @@ async function startServer() {
       centerLatitude: metrics.centerLat,
       centerLongitude: metrics.centerLng,
       rtkAccuracyCm: 1.5,
-      baseStationRef: 'CORS-VARANASI-03',
+      baseStationRef: 'CORS-BARDHAMAN-03',
       rawPointCount: surveyedGeometry.coordinates[0].length,
       remarks: remarks || 'RTK survey points synchronized from GNSS handheld terminal.'
     };
@@ -289,13 +289,13 @@ async function startServer() {
       officerName: officerName || 'Smt. Ananya Singh',
       officerRole: officerRole || 'Tehsildar',
       verificationDate: new Date().toISOString(),
-      gpsLatitude: Number(gpsLatitude || 25.3215),
-      gpsLongitude: Number(gpsLongitude || 82.9656),
+      gpsLatitude: Number(gpsLatitude || 23.2505),
+      gpsLongitude: Number(gpsLongitude || 87.8506),
       gpsAccuracyMeters: 0.5,
       result: result || 'Verified Match',
       remarks: remarks || 'On-site boundary inspection conducted with Gram Pradhan and adjacent landholders.',
       uploadedEvidence: uploadedEvidence || [],
-      witnessNames: witnessNames || ['Gram Pradhan Kalyanpur', 'Lekhpal Halqa 4'],
+      witnessNames: witnessNames || ['Gram Pradhan Madhabpur', 'Lekhpal Halqa 4'],
       signatureAcknowledged: true,
       status: 'Submitted'
     };
@@ -340,7 +340,7 @@ async function startServer() {
       mutationType: req.body.mutationType || 'Succession',
       mutationDate: new Date().toISOString().split('T')[0],
       status: req.body.status || 'Pending Verification',
-      documentReference: req.body.documentReference || `UP-REV/MUT/${Date.now().toString().slice(-6)}`,
+      documentReference: req.body.documentReference || `WB-REV/MUT/${Date.now().toString().slice(-6)}`,
       tehsildarCaseNo: req.body.tehsildarCaseNo || `CASE/${new Date().getFullYear()}/${Math.floor(100 + Math.random() * 900)}`,
       remarks: req.body.remarks || 'Mutation request registered in revenue ledger.'
     };
@@ -389,7 +389,7 @@ async function startServer() {
       possibleEncroachments,
       totalSurveyCoveragePercent,
       villageSummary: [
-        { villageName: 'Kalyanpur', totalParcels, mismatchCount: mismatchedParcels, verifiedCount: verifiedParcels }
+        { villageName: 'Madhabpur', totalParcels, mismatchCount: mismatchedParcels, verifiedCount: verifiedParcels }
       ],
       mismatchTypeCounts,
       landTypeCounts,
@@ -441,23 +441,23 @@ async function startServer() {
         aiAnalysisText = 'Automated computer vision edge segmentation vectorization completed. 4 prospective agricultural field polygons extracted with 91.8% geometric confidence.';
       }
 
-      // Generate 4 candidate polygons around Kalyanpur coordinates
+      // Generate 4 candidate polygons around Madhabpur coordinates
       const candidatePolygons = [
         {
           type: 'Polygon' as const,
-          coordinates: [[[82.9652, 25.3212], [82.9665, 25.3212], [82.9664, 25.3221], [82.9651, 25.3221], [82.9652, 25.3212]]]
+          coordinates: [[[87.8502, 23.2502], [87.8515, 23.2502], [87.8514, 23.2511], [87.8501, 23.2511], [87.8502, 23.2502]]]
         },
         {
           type: 'Polygon' as const,
-          coordinates: [[[82.9667, 25.3212], [82.9680, 25.3212], [82.9679, 25.3221], [82.9666, 25.3221], [82.9667, 25.3212]]]
+          coordinates: [[[87.8517, 23.2502], [87.8530, 23.2502], [87.8529, 23.2511], [87.8516, 23.2511], [87.8517, 23.2502]]]
         },
         {
           type: 'Polygon' as const,
-          coordinates: [[[82.9652, 25.3223], [82.9665, 25.3223], [82.9664, 25.3232], [82.9651, 25.3232], [82.9652, 25.3223]]]
+          coordinates: [[[87.8502, 23.2513], [87.8515, 23.2513], [87.8514, 23.2522], [87.8501, 23.2522], [87.8502, 23.2513]]]
         },
         {
           type: 'Polygon' as const,
-          coordinates: [[[82.9667, 25.3223], [82.9680, 25.3223], [82.9679, 25.3232], [82.9666, 25.3232], [82.9667, 25.3223]]]
+          coordinates: [[[87.8517, 23.2513], [87.8530, 23.2513], [87.8529, 23.2522], [87.8516, 23.2522], [87.8517, 23.2513]]]
         }
       ];
 

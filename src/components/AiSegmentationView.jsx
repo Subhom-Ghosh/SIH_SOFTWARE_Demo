@@ -10,7 +10,7 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
     detectedParcelsCount: 4,
     meanConfidence: 94.6,
     features: [
-      { type: 'Agricultural Field Bunds (मेड़)', count: 18, accuracy: '96.2%' },
+      { type: 'Agricultural Field Bunds (আইল)', count: 18, accuracy: '96.2%' },
       { type: 'Irrigation Canal Minor', count: 2, accuracy: '98.5%' },
       { type: 'Chak Road / Village Path', count: 1, accuracy: '94.0%' },
       { type: 'Abadi / Residential Structures', count: 3, accuracy: '91.8%' }
@@ -21,7 +21,7 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
 
   const sampleImages = [
     {
-      name: 'Kalyanpur Sector 4 Drone Orthomosaic (2cm GSD)',
+      name: 'Madhabpur Sector 4 Drone Orthomosaic (2cm GSD)',
       url: 'https://thumbs.dreamstime.com/b/bird-eye-view-rice-field-thailand-bird-eye-view-rice-field-khok-kham-village-khonburi-district-nakhon-ratchasima-province-103067675.jpg'
     },
     {
@@ -38,7 +38,7 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           imageUrl: selectedImage,
-          village: 'Kalyanpur',
+          village: 'Madhabpur',
           resolutionGsdCm: 2.0
         })
       });

@@ -24,8 +24,8 @@ export const FieldVerificationView = ({
 
   const [isMobileFrame, setIsMobileFrame] = useState(false);
   const [currentGps, setCurrentGps] = useState({
-    lat: 25.3218,
-    lng: 82.9662,
+    lat: 23.2508,
+    lng: 87.8506,
     accuracy: 0.8 // 80cm
   });
 
@@ -56,8 +56,8 @@ export const FieldVerificationView = ({
         },
         () => {
           setCurrentGps({
-            lat: 25.3215 + (Math.random() * 0.0004 - 0.0002),
-            lng: 82.9658 + (Math.random() * 0.0004 - 0.0002),
+            lat: 23.2505 + (Math.random() * 0.0004 - 0.0002),
+            lng: 87.8502 + (Math.random() * 0.0004 - 0.0002),
             accuracy: 0.4
           });
         }
@@ -162,7 +162,7 @@ export const FieldVerificationView = ({
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2.5 text-[11px]">
             <div>
               <span className="text-slate-400">Tehsil / District:</span>
-              <div className="font-semibold text-slate-200">Rampur / Varanasi</div>
+              <div className="font-semibold text-slate-200">Bardhaman Sadar / Purba Bardhaman</div>
             </div>
             <div>
               <span className="text-slate-400">Village / Halqa:</span>

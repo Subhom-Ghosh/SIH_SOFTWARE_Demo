@@ -25,7 +25,7 @@ export const SurveyManagementView = ({ surveys = [], onNavigate }) => {
         <div className="flex items-center gap-2.5">
           <div className="flex items-center gap-2 bg-emerald-950/80 border border-emerald-800 text-emerald-300 px-3 py-1.5 rounded-xl text-xs font-mono font-bold">
             <Radio className="w-3.5 h-3.5 animate-pulse" />
-            <span>CORS BASE: VARANASI-03 ACTIVE</span>
+            <span>CORS BASE: BARDHAMAN-03 ACTIVE</span>
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@ export const SurveyManagementView = ({ surveys = [], onNavigate }) => {
               FIXED
             </span>
           </div>
-          <div className="text-sm font-bold text-slate-200">SOI CORS Station Varanasi</div>
-          <div className="text-xs text-slate-400 font-mono">Lat: 25.3176° N, Lng: 82.9739° E</div>
+          <div className="text-sm font-bold text-slate-200">SOI CORS Station Bardhaman</div>
+          <div className="text-xs text-slate-400 font-mono">Lat: 23.2476° N, Lng: 87.8539° E</div>
           <div className="text-[11px] text-emerald-400">Positional Accuracy: ±0.008 m (8mm)</div>
         </div>
 

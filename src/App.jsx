@@ -44,7 +44,7 @@ export function App() {
     totalSurveyCoveragePercent: 78,
     villageSummary: [
       {
-        villageName: 'Kalyanpur',
+        villageName: 'Madhabpur',
         totalParcels: INITIAL_PARCELS.length,
         mismatchCount: INITIAL_PARCELS.filter(p => p.surveyStatus === 'Mismatch').length,
         verifiedCount: INITIAL_PARCELS.filter(p => p.surveyStatus === 'Verified').length
@@ -127,7 +127,7 @@ export function App() {
       designation = 'Senior Drone & RTK Survey Officer';
     } else if (newRole === 'Revenue Officer') {
       name = 'Rajeshwar Nath Pandey';
-      designation = 'Tehsildar / Assistant Collector, Sadar Varanasi';
+      designation = 'Block Land & Land Reforms Officer, Bardhaman Sadar';
     } else if (newRole === 'Viewer') {
       name = 'Rameshwar Yadav';
       designation = 'Gram Sabha Resident / Citizen';

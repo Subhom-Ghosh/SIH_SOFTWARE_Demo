@@ -42,8 +42,8 @@ export const ApiDocsView = () => {
         officerId: 'USR-02',
         officerName: 'Suresh Patel',
         officerRole: 'Field Survey Officer',
-        gpsLatitude: 25.3218,
-        gpsLongitude: 82.9662,
+        gpsLatitude: 23.2508,
+        gpsLongitude: 87.8506,
         result: 'Area Mismatch',
         remarks: 'Physical field bund shifted 1.8m south.',
         uploadedEvidence: ['https://example.com/photo.jpg'],
@@ -56,7 +56,7 @@ export const ApiDocsView = () => {
       desc: 'Vectorize parcel boundaries from aerial drone orthophoto imagery using AI.',
       sampleRequest: {
         imageUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef',
-        village: 'Kalyanpur',
+        village: 'Madhabpur',
         resolutionGsdCm: 2.0
       }
     }

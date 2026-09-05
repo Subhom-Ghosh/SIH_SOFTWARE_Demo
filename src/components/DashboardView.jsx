@@ -71,7 +71,7 @@ export const DashboardView = ({
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 mb-1">
             <MapPin className="w-3.5 h-3.5" />
-            <span>Gram Panchayat Kalyanpur &bull; Tehsil Sadar &bull; District Varanasi (UP)</span>
+            <span>Gram Panchayat Madhabpur &bull; Block Bardhaman Sadar &bull; District Purba Bardhaman (WB)</span>
           </div>
           <h2 className="text-2xl font-black text-white tracking-tight">
             Digital Land Resurvey & Mismatch Information System

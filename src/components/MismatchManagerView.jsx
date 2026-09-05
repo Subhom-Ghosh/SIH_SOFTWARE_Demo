@@ -40,7 +40,7 @@ export const MismatchManagerView = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `kalyanpur_land_mismatch_report_${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `madhabpur_land_mismatch_report_${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
   };
 
@@ -171,7 +171,7 @@ export const MismatchManagerView = ({
 
                     <td className="py-3.5 px-4">
                       <div className="font-semibold text-slate-200">{m.ownerName}</div>
-                      <div className="text-[10px] text-slate-400">Kalyanpur (Khata {targetParcel?.khataNumber || 'K-44'})</div>
+                      <div className="text-[10px] text-slate-400">Madhabpur (Khata {targetParcel?.khataNumber || 'K-44'})</div>
                     </td>
 
                     <td className="py-3.5 px-4">

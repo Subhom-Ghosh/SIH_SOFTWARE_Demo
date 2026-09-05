@@ -89,9 +89,9 @@ export const GisMapView = ({
       delete mapContainerRef.current._leaflet_id;
     }
 
-    // Village Kalyanpur Center
+    // Village Madhabpur Center, Purba Bardhaman, West Bengal
     const map = L.map(mapContainerRef.current, {
-      center: [25.3225, 82.9675],
+      center: [23.25, 87.85],
       zoom: 17,
       minZoom: 14,
       maxZoom: 21,
@@ -167,8 +167,8 @@ export const GisMapView = ({
 
     if (showDroneMosaic) {
       const imageBounds = [
-        [25.3200, 82.9640],
-        [25.3265, 82.9715]
+        [23.2480, 87.8460],
+        [23.2545, 87.8535]
       ];
 
       const droneImageUrl = 'https://thumbs.dreamstime.com/b/aerial-view-patchwork-fields-verdant-countryside-yellow-green-brown-crops-create-colorful-pattern-trees-border-farm-land-367484072.jpg';
@@ -287,6 +287,53 @@ export const GisMapView = ({
     });
   }, [filteredParcels, selectedParcel, showCadastral, showSurveyed, showMismatches]);
 
+  // Fit the selected parcel and its nearest neighbors inside the map viewport.
+  useEffect(() => {
+    if (!mapInstanceRef.current || filteredParcels.length === 0) return;
+
+    const getParcelCenter = (parcel) => {
+      const geometry = parcel.surveyedGeometry || parcel.cadastralGeometry;
+      const coordinates = geometry?.coordinates?.[0];
+      if (!coordinates?.length) return null;
+
+      return coordinates.reduce(
+        ([latSum, lngSum], [lng, lat]) => [latSum + lat, lngSum + lng],
+        [0, 0]
+      ).map((value) => value / coordinates.length);
+    };
+
+    const selectedCenter = selectedParcel && getParcelCenter(selectedParcel);
+    const parcelsToFit = selectedCenter
+      ? [...filteredParcels]
+        .sort((first, second) => {
+          const firstCenter = getParcelCenter(first);
+          const secondCenter = getParcelCenter(second);
+          const firstDistance = firstCenter
+            ? Math.hypot(firstCenter[0] - selectedCenter[0], firstCenter[1] - selectedCenter[1])
+            : Number.POSITIVE_INFINITY;
+          const secondDistance = secondCenter
+            ? Math.hypot(secondCenter[0] - selectedCenter[0], secondCenter[1] - selectedCenter[1])
+            : Number.POSITIVE_INFINITY;
+          return firstDistance - secondDistance;
+        })
+        .slice(0, 9)
+      : filteredParcels;
+
+    const bounds = L.latLngBounds([]);
+    parcelsToFit.forEach((parcel) => {
+      const geometry = parcel.surveyedGeometry || parcel.cadastralGeometry;
+      geometry?.coordinates?.[0]?.forEach(([lng, lat]) => bounds.extend([lat, lng]));
+    });
+
+    if (bounds.isValid()) {
+      mapInstanceRef.current.fitBounds(bounds, {
+        padding: [24, 24],
+        maxZoom: 18,
+        animate: true
+      });
+    }
+  }, [filteredParcels, selectedParcel]);
+
   // Handle Interactive Drawing & Measurement
   useEffect(() => {
     if (!mapInstanceRef.current) return;
@@ -347,7 +394,7 @@ export const GisMapView = ({
 
   const resetView = () => {
     if (!mapInstanceRef.current) return;
-    mapInstanceRef.current.flyTo([25.3225, 82.9675], 17, { duration: 1 });
+    mapInstanceRef.current.flyTo([23.25, 87.85], 17, { duration: 1 });
   };
 
   const handleFinishDraw = () => {
@@ -374,7 +421,12 @@ export const GisMapView = ({
   return (
     <div className="relative w-full h-[calc(100dvh-80px)] sm:h-[calc(100vh-80px)] flex overflow-hidden bg-slate-950">
       {/* Leaflet Map Canvas */}
-      <div ref={mapContainerRef} className="w-full h-full z-0 cursor-crosshair" />
+      <div
+        ref={mapContainerRef}
+        className={`h-full z-0 cursor-crosshair transition-[width] duration-300 ${
+          selectedParcel ? 'w-full sm:w-[calc(100%-25rem)]' : 'w-full'
+        }`}
+      />
 
       {/* Top Floating Map Controls Toolbar */}
       <div className="absolute top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-auto z-10 flex flex-wrap items-center gap-2 max-w-none sm:max-w-[calc(100%-420px)]">
@@ -387,7 +439,7 @@ export const GisMapView = ({
             placeholder="Search Plot (P-125), Owner, Khata..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none w-full"
+            className="bg-transparent text-xs text-red-800 placeholder-slate-400 focus:outline-none w-full"
           />
           {searchQuery && (
             <button
@@ -406,7 +458,7 @@ export const GisMapView = ({
             id="map-status-filter"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-transparent text-xs text-white focus:outline-none cursor-pointer"
+            className="bg-transparent text-xs text-emerald-600 focus:outline-none cursor-pointer"
           >
             <option value="All" className="bg-slate-900 text-slate-200">All Statuses ({parcels.length})</option>
             <option value="Verified" className="bg-slate-900 text-emerald-400">Verified ({parcels.filter(p => p.surveyStatus === 'Verified').length})</option>
@@ -422,15 +474,15 @@ export const GisMapView = ({
             id="map-landtype-filter"
             value={landTypeFilter}
             onChange={(e) => setLandTypeFilter(e.target.value)}
-            className="bg-transparent text-xs text-white focus:outline-none cursor-pointer"
+            className="bg-transparent text-xs text-amber-600 focus:outline-none cursor-pointer"
           >
             <option value="All" className="bg-slate-900 text-slate-200">All Land Types</option>
-            <option value="Agricultural" className="bg-slate-900 text-emerald-300">Agricultural</option>
-            <option value="Residential" className="bg-slate-900 text-sky-300">Residential (Abadi)</option>
-            <option value="Commercial" className="bg-slate-900 text-amber-300">Commercial</option>
-            <option value="Pasture / Grazing" className="bg-slate-900 text-lime-300">Pasture (Charagah)</option>
-            <option value="Waterbody / Pond" className="bg-slate-900 text-cyan-300">Waterbody (Pokhari)</option>
-            <option value="Forest / Barren" className="bg-slate-900 text-teal-300">Forest / Barren</option>
+            <option value="Agricultural" className="bg-slate-900 text-emerald-600">Agricultural</option>
+            <option value="Residential" className="bg-slate-900 text-sky-600">Residential (Abadi)</option>
+            <option value="Commercial" className="bg-slate-900 text-amber-600">Commercial</option>
+            <option value="Pasture / Grazing" className="bg-slate-900 text-lime-600">Pasture (Charagah)</option>
+            <option value="Waterbody / Pond" className="bg-slate-900 text-cyan-600">Waterbody (Pokhari)</option>
+            <option value="Forest / Barren" className="bg-slate-900 text-teal-600">Forest / Barren</option>
           </select>
         </div>
 
@@ -523,8 +575,8 @@ export const GisMapView = ({
             <div className="flex items-start justify-between pb-3 border-b border-slate-800">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-extrabold text-white tracking-tight">{selectedParcel.plotNumber}</span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-mono">
+                  <span className="text-xl font-extrabold text-blue-500 tracking-tight">{selectedParcel.plotNumber}</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-blue-700 border border-blue-900 font-mono">
                     {selectedParcel.khataNumber}
                   </span>
                 </div>
@@ -542,8 +594,8 @@ export const GisMapView = ({
                   </span>
                 )}
                 {selectedParcel.surveyStatus === 'Mismatch' && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-950 text-rose-300 border border-rose-800 text-xs font-bold animate-pulse">
-                    <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-600 text-white border border-rose-800 text-xs font-bold animate-pulse">
+                    <AlertTriangle className="w-3.5 h-3.5 text-white" />
                     Mismatch
                   </span>
                 )}
@@ -566,7 +618,7 @@ export const GisMapView = ({
             <div className="mt-4 space-y-3 text-xs">
               <div className="bg-slate-800/70 p-3 rounded-xl border border-slate-700/60">
                 <div className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Registered Title Holder</div>
-                <div className="text-sm font-bold text-white mt-0.5">{selectedParcel.ownerName}</div>
+                <div className="text-sm font-bold text-blue-500 mt-0.5">{selectedParcel.ownerName}</div>
                 {selectedParcel.coOwners && selectedParcel.coOwners.length > 0 && (
                   <div className="text-[11px] text-slate-400 mt-1">
                     Co-owners: {selectedParcel.coOwners.join(', ')}
@@ -577,16 +629,16 @@ export const GisMapView = ({
               {/* Area Comparison Metric Box */}
               <div className="grid grid-cols-2 gap-2">
                 <div className="bg-amber-950/30 border border-amber-800/40 p-2.5 rounded-xl">
-                  <div className="text-[10px] text-amber-400 font-semibold uppercase">Cadastral Record Area</div>
-                  <div className="text-base font-extrabold text-amber-200 mt-0.5 font-mono">
+                  <div className="text-[10px] text-yellow-700  font-semibold uppercase">Cadastral Record Area</div>
+                  <div className="text-base font-extrabold text-amber-700 mt-0.5 font-mono">
                     {selectedParcel.recordedAreaAcre} <span className="text-xs font-normal">Acre</span>
                   </div>
                   <div className="text-[10px] text-slate-400 font-mono">({selectedParcel.recordedAreaSqM.toLocaleString()} sq.m)</div>
                 </div>
 
                 <div className="bg-cyan-950/30 border border-cyan-800/40 p-2.5 rounded-xl">
-                  <div className="text-[10px] text-cyan-400 font-semibold uppercase">Modern Survey Area</div>
-                  <div className="text-base font-extrabold text-cyan-200 mt-0.5 font-mono">
+                  <div className="text-[10px] text-cyan-500 font-semibold uppercase">Modern Survey Area</div>
+                  <div className="text-base font-extrabold text-cyan-800 mt-0.5 font-mono">
                     {selectedParcel.surveyedAreaAcre || selectedParcel.recordedAreaAcre} <span className="text-xs font-normal">Acre</span>
                   </div>
                   <div className="text-[10px] text-slate-400 font-mono">
@@ -598,7 +650,7 @@ export const GisMapView = ({
               {/* Mismatch Alert Box if present */}
               {selectedParcel.surveyStatus === 'Mismatch' || selectedParcel.surveyStatus === 'Disputed' ? (
                 <div className="bg-rose-950/40 border border-rose-800/60 p-3 rounded-xl">
-                  <div className="flex items-center gap-1.5 text-rose-400 font-bold text-xs mb-1">
+                  <div className="flex items-center gap-1.5 text-red-600 font-bold text-xs mb-1">
                     <AlertTriangle className="w-4 h-4 shrink-0" />
                     <span>{selectedParcel.mismatchType || 'Discrepancy Detected'}</span>
                     <span className="ml-auto text-[10px] px-1.5 py-0.2 rounded bg-rose-900 text-rose-200 font-mono">

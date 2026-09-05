@@ -403,7 +403,7 @@ export const ComparisonView = ({
 
           <div className="mt-3 text-[11px] text-slate-400 flex items-center justify-between">
             <span>Coordinate System: WGS 84 (EPSG:4326) / UTM Zone 44N</span>
-            <span className="text-emerald-400 font-medium">RTK Base Reference: CORS-VARANASI-03</span>
+            <span className="text-emerald-400 font-medium">RTK Base Reference: CORS-BARDHAMAN-03</span>
           </div>
         </div>
 
