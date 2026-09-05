@@ -1,13 +1,12 @@
 <div align="center">
-  <img width="1200" height="475" alt="GHBanner" src="https://thumbs.dreamstime.com/b/aerial-drone-view-field-trees-forest-agriculture-land-top-look-to-meadow-near-village-farm-beautiful-green-fresh-c-185492319.jpg"/>
+  <img width="1200" height="475" alt="GHBanner" src="https://thumbs.dreamstime.com/b/aerial-drone-view-field-trees-forest-agriculture-land-top-look-to-meadow-near-village-farm-beautiful-green-fresh-crop-146036946.jpg"/>
 </div>
 
 # SIH_SOFTWARE_Demo
 
 A demo AI Studio web app that uses the Gemini API. This repository contains the source code and instructions to run the app locally and deploy it.
 
-Live demo: https://ai.studio/apps/b8a4e495-0c9d-4d58-8f79-8aeaa7db3bf5
-
+Live demo: https://sih-software-demo.onrender.com
 ## Features
 
 - Web UI built with Node.js (and typical frontend tooling)
