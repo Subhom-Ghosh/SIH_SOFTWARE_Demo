@@ -123,7 +123,7 @@ export const FieldVerificationView = ({
       {/* Top Header Controls */}
       <div className="w-full max-w-4xl flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
+          <h2 className="text-xl font-extrabold text-green-600 flex items-center gap-2">
             <Smartphone className="w-5 h-5 text-emerald-400" />
             <span>Mobile Field Officer Verification Portal</span>
           </h2>
@@ -151,7 +151,7 @@ export const FieldVerificationView = ({
           <div className="flex items-center justify-between pb-2.5 border-b border-slate-800 text-xs">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="font-bold text-white">Surveyor: {currentUser.name}</span>
+              <span className="font-bold text-yellow-700">Surveyor: {currentUser.name}</span>
             </div>
             <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px]">
               <Radio className="w-3.5 h-3.5 animate-pulse" />
@@ -192,10 +192,10 @@ export const FieldVerificationView = ({
               const p = parcels.find(item => item.id === e.target.value);
               if (p && onSelectParcel) onSelectParcel(p);
             }}
-            className="w-full bg-slate-800 border border-slate-700 text-white font-semibold text-xs rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
+            className="w-full bg-slate-800 border border-slate-700 text-black font-semibold text-xs rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
           >
             {parcels.map((p) => (
-              <option key={p.id} value={p.id} className="bg-slate-900 text-slate-100">
+              <option key={p.id} value={p.id} className="bg-slate-900 text-black">
                 {p.plotNumber} - {p.ownerName} [{p.surveyStatus}] ({p.recordedAreaAcre} Ac)
               </option>
             ))}
@@ -206,7 +206,7 @@ export const FieldVerificationView = ({
         <div className="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-4 mb-5 space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-lg font-black text-white">{currentParcel.plotNumber}</span>
+              <span className="text-lg font-black text-black">{currentParcel.plotNumber}</span>
               <span className="text-xs text-slate-400 ml-2 font-mono">Khata: {currentParcel.khataNumber}</span>
             </div>
             <span className="px-2.5 py-0.5 rounded-lg bg-rose-950 text-rose-300 border border-rose-800 text-xs font-bold font-mono">
@@ -217,13 +217,13 @@ export const FieldVerificationView = ({
           <div className="grid grid-cols-2 gap-3 text-xs">
             <div className="bg-slate-900/80 p-2.5 rounded-xl border border-slate-700/50">
               <span className="text-slate-400 text-[10px] uppercase font-semibold">Registered Title Holder</span>
-              <div className="text-sm font-bold text-white mt-0.5">{currentParcel.ownerName}</div>
+              <div className="text-sm font-bold text-black mt-0.5">{currentParcel.ownerName}</div>
               <div className="text-[11px] text-slate-400 mt-1">Land Use: {currentParcel.landType}</div>
             </div>
 
             <div className="bg-slate-900/80 p-2.5 rounded-xl border border-slate-700/50">
               <span className="text-slate-400 text-[10px] uppercase font-semibold">Area Discrepancy Matrix</span>
-              <div className="text-xs font-bold text-amber-300 mt-0.5 font-mono">
+              <div className="text-xs font-bold text-amber-700 mt-0.5 font-mono">
                 Cadastral: {currentParcel.recordedAreaAcre} Ac ({currentParcel.recordedAreaSqM} m²)
               </div>
               <div className="text-xs font-bold text-cyan-300 font-mono">
@@ -232,8 +232,8 @@ export const FieldVerificationView = ({
             </div>
           </div>
 
-          <div className="bg-amber-950/40 border border-amber-800/40 p-2.5 rounded-xl text-xs text-amber-200 leading-relaxed">
-            <span className="font-bold text-amber-300">Flagged Note: </span>
+          <div className="bg-amber-950/40 border border-amber-800/40 p-2.5 rounded-xl text-xs text-amber-900 leading-relaxed">
+            <span className="font-bold text-amber-900">Flagged Note: </span>
             {currentParcel.mismatchDetails || 'Drone resurvey recorded an 8% deficit in cultivated land boundary along southern ridge.'}
           </div>
         </div>
@@ -242,7 +242,7 @@ export const FieldVerificationView = ({
         <form onSubmit={handleSubmitVerification} className="space-y-4">
           {/* 5 Required Action Buttons */}
           <div>
-            <label className="block text-xs font-bold text-slate-300 mb-2">
+            <label className="block text-xs font-bold text-black mb-2">
               Step 1: Ground Verification Finding (Select One):
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -252,8 +252,8 @@ export const FieldVerificationView = ({
                 onClick={() => setSelectedResult('Verified Match')}
                 className={`p-3 rounded-xl border text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
                   selectedResult === 'Verified Match'
-                    ? 'bg-emerald-600 border-emerald-400 text-white shadow-lg shadow-emerald-950/60'
-                    : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-800'
+                    ? 'bg-emerald-600 border-emerald-400 text-black shadow-lg shadow-emerald-950/60'
+                    : 'bg-slate-800/80 border-slate-700 text-black hover:bg-slate-800'
                 }`}
               >
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
@@ -308,7 +308,7 @@ export const FieldVerificationView = ({
                 onClick={() => setSelectedResult('Dispute')}
                 className={`p-3 rounded-xl border text-xs font-bold flex items-center gap-2 sm:col-span-2 transition-all cursor-pointer ${
                   selectedResult === 'Dispute'
-                    ? 'bg-pink-700 border-pink-400 text-white shadow-lg shadow-pink-950/60'
+                    ? 'bg-pink-700 border-pink-400 text-black shadow-lg shadow-pink-950/60'
                     : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-800'
                 }`}
               >
@@ -322,7 +322,7 @@ export const FieldVerificationView = ({
           <div className="bg-slate-800/40 p-3 rounded-xl border border-slate-700/60 flex items-center justify-between">
             <div>
               <span className="text-[10px] uppercase font-bold text-slate-400">Field Geotag Stamp</span>
-              <div className="text-xs font-mono text-white font-semibold">
+              <div className="text-xs font-mono text-red-500 font-semibold">
                 Lat: {currentGps.lat}° N, Lng: {currentGps.lng}° E (±{currentGps.accuracy}m)
               </div>
             </div>
@@ -372,7 +372,7 @@ export const FieldVerificationView = ({
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
               placeholder="Enter details of ground landmarks, boundary pillars, landholder statements, and Lekhpal findings..."
-              className="w-full bg-slate-800 border border-slate-700 text-white text-xs rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 leading-relaxed placeholder-slate-500"
+              className="w-full bg-slate-800 border border-slate-700 text-black text-xs rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 leading-relaxed placeholder-slate-500"
               required
             />
           </div>
@@ -387,7 +387,7 @@ export const FieldVerificationView = ({
               value={witnessNames}
               onChange={(e) => setWitnessNames(e.target.value)}
               placeholder="e.g. Moti Lal (Pradhan), Rameshwar Patel (Neighbor P-126)"
-              className="w-full bg-slate-800 border border-slate-700 text-white text-xs rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full bg-slate-800 border border-slate-700 text-black text-xs rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
           </div>
 
@@ -405,7 +405,7 @@ export const FieldVerificationView = ({
           </div>
 
           {submittedSuccess && (
-            <div className="bg-emerald-950/80 border border-emerald-500 text-emerald-200 text-xs p-3 rounded-xl flex items-center gap-2 animate-in fade-in">
+            <div className="bg-emerald-950/80 border border-emerald-500 text-emerald-800 text-xs p-3 font-extrabold rounded-xl flex items-center gap-2 animate-in fade-in">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Field verification logged successfully! Status updated in Digital Land Information System.</span>
             </div>
