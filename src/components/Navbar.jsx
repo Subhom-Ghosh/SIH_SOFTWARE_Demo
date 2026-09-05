@@ -39,7 +39,10 @@ export const Navbar = ({
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-600 to-indigo-600 p-0.5 shadow-lg shadow-emerald-900/30 flex items-center justify-center">
             <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-              <img src="public\assets\aistudio\image.png" className="w-5 h-5 object-contain group-hover:scale-110 transition-transform" />
+              <img
+  src="/assets/aistudio/image.png"
+  className="w-5 h-5 object-contain group-hover:scale-110 transition-transform"
+/>
             </div>
           </div>
           <div className="hidden sm:block">
