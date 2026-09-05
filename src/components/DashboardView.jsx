@@ -73,7 +73,7 @@ export const DashboardView = ({
             <MapPin className="w-3.5 h-3.5" />
             <span>Gram Panchayat Madhabpur &bull; Block Bardhaman Sadar &bull; District Purba Bardhaman (WB)</span>
           </div>
-          <h2 className="text-2xl font-black text-white tracking-tight">
+          <h2 className="text-2xl font-black text-green-500 tracking-tight">
             Digital Land Resurvey & Mismatch Information System
           </h2>
           <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
@@ -332,7 +332,7 @@ export const DashboardView = ({
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
+            <h3 className="text-sm font-bold text-red-500 flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-rose-400" />
               <span>Priority Flagged Land Parcels Awaiting Verification</span>
             </h3>
@@ -366,13 +366,13 @@ export const DashboardView = ({
                 const targetParcel = parcels.find(p => p.id === m.parcelId || p.plotNumber === m.plotNumber);
                 return (
                   <tr key={m.id} className="hover:bg-slate-800/50 transition-colors">
-                    <td className="py-3 px-3 font-bold text-white font-mono">{m.plotNumber}</td>
+                    <td className="py-3 px-3 font-bold text-rose-500 font-mono">{m.plotNumber}</td>
                     <td className="py-3 px-3 font-medium text-slate-300">{m.ownerName}</td>
                     <td className="py-3 px-3">
-                      <span className="text-rose-300 font-semibold">{m.mismatchType}</span>
+                      <span className="text-rose-500 font-semibold">{m.mismatchType}</span>
                     </td>
-                    <td className="py-3 px-3 font-mono text-amber-300">{m.recordedValue}</td>
-                    <td className="py-3 px-3 font-mono text-cyan-300">{m.surveyedValue}</td>
+                    <td className="py-3 px-3 font-mono text-amber-500">{m.recordedValue}</td>
+                    <td className="py-3 px-3 font-mono text-cyan-500">{m.surveyedValue}</td>
                     <td className="py-3 px-3 font-mono font-bold text-rose-400">
                       {m.areaDifferenceAcre > 0 ? `+${m.areaDifferenceAcre}` : m.areaDifferenceAcre} Ac ({m.areaDifferencePercent}%)
                     </td>
