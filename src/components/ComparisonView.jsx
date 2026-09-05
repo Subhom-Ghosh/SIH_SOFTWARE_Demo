@@ -422,7 +422,7 @@ export const ComparisonView = ({
                     {comparison.severity} Severity
                   </span>
                 </div>
-                <div className="text-xs text-rose-200 font-medium">
+                <div className="text-xs font-bold text-red-700 ">
                   {currentParcel.mismatchType || comparison.mismatchType}
                 </div>
                 <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
@@ -452,16 +452,16 @@ export const ComparisonView = ({
 
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
                 <div className="bg-slate-900/90 p-2 rounded-lg border border-slate-700/40">
-                  <div className="text-[10px] text-amber-400">Recorded Area</div>
-                  <div className="text-sm font-extrabold text-amber-200 mt-0.5 font-mono">
+                  <div className="text-[10px] font-bold text-amber-800">Recorded Area</div>
+                  <div className="text-sm font-extrabold text-amber-400 mt-0.5 font-mono">
                     {comparison.recordedAreaAcre} Ac
                   </div>
                   <div className="text-[10px] text-slate-400">{comparison.cadAreaSqM} m²</div>
                 </div>
 
                 <div className="bg-slate-900/90 p-2 rounded-lg border border-slate-700/40">
-                  <div className="text-[10px] text-cyan-400">Surveyed Area</div>
-                  <div className="text-sm font-extrabold text-cyan-200 mt-0.5 font-mono">
+                  <div className="text-[10px] font-bold text-cyan-400">Surveyed Area</div>
+                  <div className="text-sm font-extrabold text-cyan-400 mt-0.5 font-mono">
                     {comparison.surveyedAreaAcre} Ac
                   </div>
                   <div className="text-[10px] text-slate-400">{comparison.surAreaSqM} m²</div>
@@ -469,7 +469,7 @@ export const ComparisonView = ({
 
                 <div className={`p-2 rounded-lg border ${
                   comparison.isMismatch
-                    ? 'bg-rose-950/40 border-rose-800/50 text-rose-300'
+                    ? 'bg-rose-950/40 font-bold border-rose-800/50 text-rose-600'
                     : 'bg-emerald-950/40 border-emerald-800/50 text-emerald-300'
                 }`}>
                   <div className="text-[10px]">Difference</div>
@@ -490,8 +490,8 @@ export const ComparisonView = ({
                 </div>
                 <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-700/50">
                   <div
-                    className={`h-full rounded-full transition-all ${
-                      comparison.iouPercent > 92 ? 'bg-emerald-500' : comparison.iouPercent > 80 ? 'bg-amber-500' : 'bg-rose-500'
+                    className={`h-full font-bold rounded-full transition-all ${
+                      comparison.iouPercent > 92 ? 'bg-emerald-00' : comparison.iouPercent > 80 ? 'bg-amber-300' : 'bg-rose-500'
                     }`}
                     style={{ width: `${Math.min(100, comparison.iouPercent)}%` }}
                   />
@@ -503,7 +503,7 @@ export const ComparisonView = ({
             <div className="space-y-1.5 text-xs bg-slate-800/40 p-3 rounded-xl border border-slate-800">
               <div className="flex justify-between py-0.5">
                 <span className="text-slate-400">Plot Number:</span>
-                <span className="font-bold text-white">{currentParcel.plotNumber} ({currentParcel.khataNumber})</span>
+                <span className="font-bold text-gray-700">{currentParcel.plotNumber} ({currentParcel.khataNumber})</span>
               </div>
               <div className="flex justify-between py-0.5">
                 <span className="text-slate-400">Title Owner:</span>

@@ -54,7 +54,7 @@ export const MismatchManagerView = ({
               <AlertTriangle className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl font-extrabold text-green-700 tracking-tight">
                 Mismatch & Discrepancy Resolution Management
               </h2>
               <p className="text-xs text-slate-400">
@@ -86,7 +86,7 @@ export const MismatchManagerView = ({
             placeholder="Search Plot (P-125), Owner Name, Mismatch ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-800/80 border border-slate-700 text-white text-xs rounded-xl pl-9 pr-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full bg-slate-800/80 border border-slate-700 text-black text-xs rounded-xl pl-9 pr-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>
 
@@ -96,7 +96,7 @@ export const MismatchManagerView = ({
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-white text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
+            className="bg-slate-800 border border-slate-700 text-black text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
           >
             <option value="All">All Severities</option>
             <option value="Critical">Critical</option>
@@ -107,12 +107,12 @@ export const MismatchManagerView = ({
         </div>
 
         {/* Status Filter */}
-        <div className="flex items-center gap-1.5 text-xs text-slate-300">
+        <div className="flex items-center gap-1.5 text-xs text-black">
           <span className="text-slate-400 text-[11px] font-semibold">Resolution:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-white text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
+            className="bg-slate-800 border border-slate-700 text-black text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
           >
             <option value="All">All Statuses</option>
             <option value="Pending Verification">Pending Verification</option>
@@ -130,7 +130,7 @@ export const MismatchManagerView = ({
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-white text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
+            className="bg-slate-800 border border-slate-700 text-black text-xs rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer"
           >
             <option value="All">All Types</option>
             <option value="Area Mismatch">Area Mismatch</option>
@@ -165,7 +165,7 @@ export const MismatchManagerView = ({
                 return (
                   <tr key={m.id} className="hover:bg-slate-800/50 transition-colors">
                     <td className="py-3.5 px-4">
-                      <div className="font-extrabold text-white font-mono text-sm">{m.plotNumber}</div>
+                      <div className="font-extrabold text-black font-mono text-sm">{m.plotNumber}</div>
                       <div className="text-[10px] text-slate-500 font-mono">{m.id}</div>
                     </td>
 
@@ -175,13 +175,13 @@ export const MismatchManagerView = ({
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <div className="font-semibold text-rose-300">{m.mismatchType}</div>
+                      <div className="font-semibold text-rose-700">{m.mismatchType}</div>
                       <div className="text-[11px] text-slate-400 max-w-xs truncate">{m.description}</div>
                     </td>
 
                     <td className="py-3.5 px-4 font-mono text-[11px]">
-                      <div className="text-amber-300">Rec: {m.recordedValue}</div>
-                      <div className="text-cyan-300">Sur: {m.surveyedValue}</div>
+                      <div className="text-amber-700">Rec: {m.recordedValue}</div>
+                      <div className="text-cyan-800">Sur: {m.surveyedValue}</div>
                     </td>
 
                     <td className="py-3.5 px-4 font-mono font-bold text-rose-400">
@@ -196,10 +196,10 @@ export const MismatchManagerView = ({
                     <td className="py-3.5 px-4">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase font-mono ${
                         m.severity === 'Critical'
-                          ? 'bg-red-950 text-red-300 border border-red-800'
+                          ? 'bg-red-950 text-red-800 border border-red-800'
                           : m.severity === 'High'
-                          ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                          : 'bg-amber-950 text-amber-300 border border-amber-800'
+                          ? 'bg-rose-950 text-rose-800 border border-rose-800'
+                          : 'bg-amber-950 text-amber-500 border border-amber-800'
                       }`}>
                         {m.severity}
                       </span>
@@ -209,7 +209,7 @@ export const MismatchManagerView = ({
                       <select
                         value={m.status}
                         onChange={(e) => onUpdateStatus && onUpdateStatus(m.id, e.target.value)}
-                        className="bg-slate-800 border border-slate-700 text-[11px] font-semibold text-white rounded-lg px-2 py-1 focus:outline-none cursor-pointer"
+                        className="bg-slate-800 border border-slate-700 text-[11px] font-semibold text-black rounded-lg px-2 py-1 focus:outline-none cursor-pointer"
                       >
                         <option value="Pending Verification">Pending Verification</option>
                         <option value="In Review">In Review</option>

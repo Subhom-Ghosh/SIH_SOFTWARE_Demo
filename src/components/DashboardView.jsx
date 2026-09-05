@@ -389,7 +389,7 @@ export const DashboardView = ({
                           if (targetParcel) onSelectParcel(targetParcel);
                           onNavigate('compare');
                         }}
-                        className="bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-300 font-semibold px-2.5 py-1 rounded-lg transition-all cursor-pointer"
+                        className=" bg-blue-200 hover:bg-emerald-300 hover:text-white text-slate-300 font-semibold px-2.5 py-1 rounded-lg transition-all cursor-pointer"
                       >
                         Compare GIS
                       </button>
