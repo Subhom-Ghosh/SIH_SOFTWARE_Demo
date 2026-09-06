@@ -64,7 +64,7 @@ export const OwnershipMutationView = ({
               <BookOpenCheck className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl font-extrabold text-teal-400 tracking-tight">
                 Digital Record of Rights (RoR 7/12 & Khasra-Khatauni)
               </h2>
               <p className="text-xs text-slate-400">
@@ -146,13 +146,13 @@ export const OwnershipMutationView = ({
                   }`}
                 >
                   <div className="flex items-center justify-between font-bold">
-                    <span className="text-white font-mono">{p.plotNumber}</span>
+                    <span className="text-black font-mono">{p.plotNumber}</span>
                     <span className="text-[10px] text-slate-400 font-mono">{p.khataNumber}</span>
                   </div>
                   <div className="text-slate-300 mt-1 truncate">{p.ownerName}</div>
                   <div className="text-[10px] text-slate-500 mt-0.5 flex items-center justify-between">
                     <span>{p.recordedAreaAcre} Acre</span>
-                    <span className={p.surveyStatus === 'Verified' ? 'text-emerald-400' : 'text-rose-400'}>
+                    <span className={p.surveyStatus === 'Verified' ? 'text-emerald-400 font-bold text-xs' : 'text-rose-400 font-bold text-xs'}>
                       {p.surveyStatus}
                     </span>
                   </div>
@@ -168,8 +168,8 @@ export const OwnershipMutationView = ({
               <div className="text-[11px] uppercase font-bold tracking-widest text-emerald-400">
                 Department of Land Resources &bull; Government of West Bengal
               </div>
-              <h3 className="text-lg font-black text-white mt-1">
-                খতিয়ান নকল / Form 7-12 Record of Rights
+              <h3 className="text-lg font-black text-sky-400 mt-1">
+                Form 7-12 Record of Rights
               </h3>
               <div className="text-xs text-slate-400 mt-0.5">
                 Village: <span className="text-slate-200 font-semibold">{selectedParcel.village} (Code: 20491)</span> &bull; Tehsil: {selectedParcel.tehsil} &bull; Fasli Year: 1431-1436
@@ -191,16 +191,16 @@ export const OwnershipMutationView = ({
                 </thead>
                 <tbody className="divide-y divide-slate-800 text-slate-200">
                   <tr>
-                    <td className="py-3 px-3 border-r border-slate-800 font-mono font-bold text-white">
+                    <td className="py-3 px-3 border-r border-slate-800 font-mono font-bold text-black">
                       {selectedParcel.khataNumber}
                     </td>
-                    <td className="py-3 px-3 border-r border-slate-800 font-mono font-bold text-emerald-400">
+                    <td className="py-3 px-3 border-r border-slate-800 font-mono font-bold text-emerald-600">
                       {selectedParcel.plotNumber}
                     </td>
                     <td className="py-3 px-3 border-r border-slate-800 font-semibold">
                       {selectedParcel.ownerName}
                       {selectedParcel.coOwners && (
-                        <div className="text-[10px] text-slate-400 font-normal mt-0.5">
+                        <div className="text-[10px] text-slate-600 font-normal mt-0.5">
                           সহ-খাতেদার: {selectedParcel.coOwners.join(', ')}
                         </div>
                       )}
@@ -208,10 +208,10 @@ export const OwnershipMutationView = ({
                     <td className="py-3 px-3 border-r border-slate-800">
                       হস্তান্তরযোগ্য ভূমিধারী (Bhumidhar with Transferable Rights)
                     </td>
-                    <td className="py-3 px-3 border-r border-slate-800 font-mono text-amber-300">
+                    <td className="py-3 px-3 border-r border-slate-800 font-mono text-amber-600">
                       {selectedParcel.recordedAreaAcre} Ac ({selectedParcel.recordedAreaSqM} m²)
                     </td>
-                    <td className="py-3 px-3 font-mono text-emerald-400">₹42.50 / annum</td>
+                    <td className="py-3 px-3 font-mono text-emerald-600">₹42.50 / annum</td>
                   </tr>
                 </tbody>
               </table>
@@ -222,13 +222,13 @@ export const OwnershipMutationView = ({
               <div className="text-xs font-bold text-slate-200 flex items-center justify-between">
                 <span>Resurvey Ground Audit Status:</span>
                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                  selectedParcel.surveyStatus === 'Verified' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-rose-950 text-rose-300 border border-rose-800'
+                  selectedParcel.surveyStatus === 'Verified' ? 'bg-emerald-950 text-emerald-700 border border-emerald-800' : 'bg-rose-950 text-rose-300 border border-rose-800'
                 }`}>
                   {selectedParcel.surveyStatus}
                 </span>
               </div>
               <div className="text-[11px] text-slate-400 leading-relaxed">
-                Modern DGPS/RTK surveyed area: <span className="font-mono text-cyan-300 font-semibold">{selectedParcel.surveyedAreaAcre || selectedParcel.recordedAreaAcre} Acre</span>. 
+                Modern DGPS/RTK surveyed area: <span className="font-mono text-cyan-700 font-semibold">{selectedParcel.surveyedAreaAcre || selectedParcel.recordedAreaAcre} Acre</span>. 
                 {selectedParcel.mismatchDetails ? ` ${selectedParcel.mismatchDetails}` : ' Boundaries conform to field markers.'}
               </div>
             </div>
@@ -273,20 +273,20 @@ export const OwnershipMutationView = ({
               <tbody className="divide-y divide-slate-800/60 text-slate-200">
                 {mutations.map((m) => (
                   <tr key={m.id} className="hover:bg-slate-800/50 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold text-white">{m.id}</td>
-                    <td className="py-3 px-4 font-mono font-bold text-emerald-400">{m.plotNumber}</td>
+                    <td className="py-3 px-4 font-mono font-bold text-black">{m.id}</td>
+                    <td className="py-3 px-4 font-mono font-bold text-emerald-500">{m.plotNumber}</td>
                     <td className="py-3 px-4 font-semibold text-slate-200">{m.mutationType}</td>
                     <td className="py-3 px-4 text-slate-400">{m.previousOwner}</td>
-                    <td className="py-3 px-4 font-semibold text-white">{m.newOwner}</td>
-                    <td className="py-3 px-4 font-mono text-amber-300">{m.affectedAreaAcre} Ac</td>
-                    <td className="py-3 px-4 font-mono text-slate-400">{m.filingDate}</td>
+                    <td className="py-3 px-4 font-semibold text-black">{m.newOwner}</td>
+                    <td className="py-3 px-4 font-mono text-amber-700">{m.affectedAreaAcre} Ac</td>
+                    <td className="py-3 px-4 font-mono text-slate-700">{m.filingDate}</td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                         m.status === 'Approved'
-                          ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                          ? 'bg-emerald-950 text-emerald-500 border border-emerald-800'
                           : m.status === 'Pending'
-                          ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                          : 'bg-rose-950 text-rose-300 border border-rose-800'
+                          ? 'bg-amber-950 text-amber-500 border border-amber-800'
+                          : 'bg-rose-950 text-red-700 border border-rose-800'
                       }`}>
                         {m.status}
                       </span>
@@ -315,7 +315,7 @@ export const OwnershipMutationView = ({
               </div>
               <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex-1">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-bold text-white">First Cadastral Settlement Record</span>
+                  <span className="font-bold text-black">First Cadastral Settlement Record</span>
                   <span className="text-slate-500 font-mono">1952 (1359 Fasli)</span>
                 </div>
                 <p className="text-xs text-slate-400">
@@ -325,13 +325,13 @@ export const OwnershipMutationView = ({
             </div>
 
             <div className="relative flex items-start gap-4">
-              <div className="w-7 h-7 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold text-xs shrink-0 z-10">
+              <div className="w-7 h-7 rounded-full bg-indigo-500 text-black flex items-center justify-center font-bold text-xs shrink-0 z-10">
                 2
               </div>
               <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex-1">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-bold text-white">Succession / Virasat Mutation</span>
-                  <span className="text-slate-500 font-mono">2004</span>
+                  <span className="font-bold text-black">Succession / Virasat Mutation</span>
+                  <span className="text-slate-500 font-mono">2015</span>
                 </div>
                 <p className="text-xs text-slate-400">
                   Title transmitted by succession to {selectedParcel.ownerName}.
@@ -345,7 +345,7 @@ export const OwnershipMutationView = ({
               </div>
               <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex-1">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-bold text-white">DILRMP High-Precision Drone & RTK Resurvey</span>
+                  <span className="font-bold text-black">DILRMP High-Precision Drone & RTK Resurvey</span>
                   <span className="text-cyan-400 font-mono font-bold">2026 (Modern)</span>
                 </div>
                 <p className="text-xs text-slate-300">
@@ -373,21 +373,21 @@ export const OwnershipMutationView = ({
 
             <form onSubmit={handleCreateMutation} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Target Land Parcel:</label>
+                <label className="block text-black font-semibold mb-1">Target Land Parcel:</label>
                 <input
                   type="text"
                   disabled
                   value={`${selectedParcel.plotNumber} - ${selectedParcel.ownerName} (${selectedParcel.recordedAreaAcre} Ac)`}
-                  className="w-full bg-slate-800 border border-slate-700 text-slate-400 rounded-xl p-2.5"
+                  className="w-full bg-slate-800 border border-slate-700 text-black rounded-xl p-2.5"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Mutation Type:</label>
+                <label className="block text-black font-semibold mb-1">Mutation Type:</label>
                 <select
                   value={mutationType}
                   onChange={(e) => setMutationType(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-2.5 focus:outline-none cursor-pointer"
+                  className="w-full bg-slate-800 border border-slate-700 text-black rounded-xl p-2.5 focus:outline-none cursor-pointer"
                 >
                   <option value="Inheritance (Virasat)">Inheritance (Virasat / উত্তরাধিকার)</option>
                   <option value="Sale Deed (Bainama)">Sale Deed (Bainama / বিক্রয় দলিল)</option>
@@ -406,7 +406,7 @@ export const OwnershipMutationView = ({
                     placeholder="e.g. Vikas Verma"
                     value={applicantName}
                     onChange={(e) => setApplicantName(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-2.5 focus:outline-none"
+                    className="w-full bg-slate-800 border border-slate-700 text-black rounded-xl p-2.5 focus:outline-none"
                   />
                 </div>
                 <div>
@@ -417,7 +417,7 @@ export const OwnershipMutationView = ({
                     required
                     value={areaAffected}
                     onChange={(e) => setAreaAffected(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-2.5 focus:outline-none font-mono"
+                    className="w-full bg-slate-800 border border-slate-700 text-black rounded-xl p-2.5 focus:outline-none font-mono"
                   />
                 </div>
               </div>
@@ -429,7 +429,7 @@ export const OwnershipMutationView = ({
                   placeholder="e.g. REG-BK1-2026/8941"
                   value={docRef}
                   onChange={(e) => setDocRef(e.target.value)}
-                  className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-2.5 focus:outline-none font-mono"
+                  className="w-full bg-slate-800 border border-slate-700 text-black rounded-xl p-2.5 focus:outline-none font-mono"
                 />
               </div>
 
