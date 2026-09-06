@@ -10,7 +10,9 @@ import {
   Plane,
   FileCode2,
   Database,
-  RefreshCw
+  RefreshCw,
+  MoreVertical,
+  X
 } from 'lucide-react';
 
 export const Sidebar = ({
@@ -20,6 +22,8 @@ export const Sidebar = ({
   onAutoDetect,
   isDetecting = false
 }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   const menuItems = [
     {
       id: 'map',
@@ -81,52 +85,89 @@ export const Sidebar = ({
     },
   ];
 
+  const handleNavigate = (view) => {
+    onNavigate(view);
+    setIsMobileMenuOpen(false);
+  };
+
+  const renderMenuItems = (mobile = false) => menuItems.map((item) => {
+    const Icon = item.icon;
+    const isActive = activeView === item.id;
+    return (
+      <button
+        key={`${mobile ? 'mobile-' : ''}${item.id}`}
+        id={`${mobile ? 'mobile-' : 'sidebar-'}item-${item.id}`}
+        onClick={() => handleNavigate(item.id)}
+        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all group ${
+          isActive
+            ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-950/40 font-semibold'
+            : 'text-slate-300 hover:text-white hover:bg-slate-800/70 font-medium'
+        }`}
+      >
+        <div className="flex items-center gap-3 min-w-0">
+          <div className={`p-1.5 rounded-lg ${isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'}`}>
+            <Icon className="w-4 h-4" />
+          </div>
+          <div className="min-w-0">
+            <div className="text-xs truncate">{item.label}</div>
+            <div className={`text-[10px] truncate ${isActive ? 'text-emerald-100' : 'text-slate-400'}`}>
+              {item.subtitle}
+            </div>
+          </div>
+        </div>
+
+        {item.badge && (
+          <span
+            className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+              item.badgeColor ? `${item.badgeColor} text-white` : 'bg-slate-700 text-slate-200'
+            }`}
+          >
+            {item.badge}
+          </span>
+        )}
+      </button>
+    );
+  });
+
   return (
-    <aside className="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex-col justify-between shrink-0 h-[calc(100vh-80px)] select-none">
+    <>
+      <div className="md:hidden">
+        <button
+          type="button"
+          aria-label="Open sections menu"
+          aria-expanded={isMobileMenuOpen}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="fixed right-3 top-[4.35rem] z-[70] flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 shadow-lg"
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <MoreVertical className="h-5 w-5" />}
+        </button>
+
+        {isMobileMenuOpen && (
+          <>
+            <button
+              type="button"
+              aria-label="Close sections menu"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 z-[60] bg-slate-950/35"
+            />
+            <nav className="fixed right-3 top-[7.3rem] z-[65] max-h-[calc(100vh-8rem)] w-[min(21rem,calc(100vw-1.5rem))] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl">
+              <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                Resurvey Workflow
+              </div>
+              {renderMenuItems(true)}
+            </nav>
+          </>
+        )}
+      </div>
+
+      <aside className="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex-col justify-between shrink-0 h-[calc(100vh-80px)] select-none">
       {/* Navigation List */}
       <div className="p-1.5 md:p-3 space-y-1 overflow-y-auto">
         <div className="hidden md:block px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 tracking-wider">
           Resurvey Workflow
         </div>
 
-        {menuItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeView === item.id;
-          return (
-            <button
-              key={item.id}
-              id={`sidebar-item-${item.id}`}
-              onClick={() => onNavigate(item.id)}
-              className={`w-full flex items-center justify-center md:justify-between px-2 md:px-3 py-2.5 rounded-xl text-left transition-all group ${
-                isActive
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-950/40 font-semibold'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/70 font-medium'
-              }`}
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className={`p-1.5 rounded-lg ${isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'}`}>
-                  <Icon className="w-4 h-4" />
-                </div>
-                <div className="hidden md:block min-w-0">
-                  <div className="text-xs truncate">{item.label}</div>
-                  <div className={`text-[10px] truncate ${isActive ? 'text-emerald-100' : 'text-slate-400'}`}>
-                    {item.subtitle}
-                  </div>
-                </div>
-              </div>
-
-              {item.badge && (
-                <span
-                  className={`hidden md:inline-block px-1.5 py-0.5 rounded text-[10px] font-bold ${
-                    item.badgeColor ? `${item.badgeColor} text-white` : 'bg-slate-700 text-slate-200'
-                  }`}
-                >
-                  {item.badge}
-                </span>
-              )}
-            </button>
-          );
-        })}
+        {renderMenuItems()}
       </div>
 
       {/* Bottom GIS Engine Status & Auto-Detect Trigger */}
@@ -162,5 +203,6 @@ export const Sidebar = ({
         </div>
       </div>
     </aside>
+    </>
   );
 };
