@@ -12,8 +12,8 @@ export const Navbar = ({
       {/* Top Banner with National Emblem & Project Identity */}
       <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 px-4 py-1.5 text-xs flex flex-wrap items-center justify-between border-b border-slate-800 text-slate-300">
         <div className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span className="font-semibold text-emerald-300">DILRMP & SVAMITVA Integrated Resurvey Platform</span>
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-900 animate-ping"></span>
+          <span className="font-semibold text-emerald-500">DILRMP & SVAMITVA Integrated Resurvey Platform</span>
           <span className="text-slate-500 hidden sm:inline">|</span>
           <span className="text-slate-400 hidden sm:inline">Revenue & Land Reforms Cadastral GIS</span>
         </div>
@@ -22,7 +22,7 @@ export const Navbar = ({
             <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
             <span>RTK DGPS: FIXED (±1.2 cm)</span>
           </div>
-          <div className="hidden md:flex items-center gap-1 text-amber-400">
+          <div className="hidden md:flex items-center gap-1 text-amber-100">
             <MapPin className="w-3 h-3 text-amber-400" />
             <span>Madhabpur, Block Bardhaman Sadar, Purba Bardhaman (W.B.)</span>
           </div>
@@ -50,7 +50,7 @@ export const Navbar = ({
             <div className="flex items-center gap-2">
               <h1 className="font-bold text-lg tracking-tight text-emerald-800 flex items-center gap-1.5">
                 <span>BhuRaksha</span>
-                <span className="text-xs  px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-900 border border-emerald-800/30 font-mono font-normal">ভুরক্ষা</span>
+                <span className="text-xs  px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-900 border border-emerald-800/30 font-mono font-normal">ভূরক্ষা</span>
               </h1>
             </div>
             <p className="text-[11px] text-slate-400 font-medium">Rural Land Survey & Resurvey System</p>
@@ -104,10 +104,10 @@ export const Navbar = ({
             id="nav-ai-btn"
             onClick={() => onNavigate('ai-segmentation')}
             className={`px-3 py-1.5 rounded-md font-medium transition-all flex items-center gap-1 ${
-              activeView === 'ai-segmentation' ? 'bg-indigo-600 text-white shadow' : 'text-indigo-300 hover:text-white hover:bg-slate-700/50'
+              activeView === 'ai-segmentation' ? 'bg-indigo-600 text-white shadow' : 'text-indigo-700 hover:text-blue-300 hover:bg-slate-700/50'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Sparkles className="w-3.5 h-3.5 text-indigo-700" />
             <span>AI Aerial Lab</span>
           </button>
         </div>

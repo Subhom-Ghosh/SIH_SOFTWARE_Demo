@@ -594,7 +594,7 @@ export const GisMapView = ({
                   </span>
                 )}
                 {selectedParcel.surveyStatus === 'Mismatch' && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-600 text-white border border-rose-800 text-xs font-bold animate-pulse">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-500 text-white border border-rose-800 text-xs font-bold animate-[pulse_0.2s_ease-in-out_infinite]">
                     <AlertTriangle className="w-3.5 h-3.5 text-white" />
                     Mismatch
                   </span>
@@ -649,7 +649,7 @@ export const GisMapView = ({
 
               {/* Mismatch Alert Box if present */}
               {selectedParcel.surveyStatus === 'Mismatch' || selectedParcel.surveyStatus === 'Disputed' ? (
-                <div className="bg-rose-950/40 border border-rose-800/60 p-3 rounded-xl">
+                <div className="bg-red-950/40 border border-rose-900/60 p-3 rounded-xl animate-pulse">
                   <div className="flex items-center gap-1.5 text-red-600 font-bold text-xs mb-1">
                     <AlertTriangle className="w-4 h-4 shrink-0" />
                     <span>{selectedParcel.mismatchType || 'Discrepancy Detected'}</span>
