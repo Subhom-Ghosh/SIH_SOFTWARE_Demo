@@ -69,7 +69,7 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
               <Cpu className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl font-extrabold text-teal-400 tracking-tight">
                 AI Aerial Drone Orthophoto Boundary Segmentation Lab
               </h2>
               <p className="text-xs text-slate-400">
@@ -97,7 +97,7 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
         {/* Left 8 Cols: Visual Segmentation Canvas */}
         <div className="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-bold text-white flex items-center gap-2">
+            <span className="font-bold text-red-400 flex items-center gap-2">
               <Layers className="w-4 h-4 text-indigo-400" />
               <span>Drone Orthophoto (2cm GSD) vs AI Vector Overlay</span>
             </span>
@@ -212,14 +212,14 @@ export const AiSegmentationView = ({ onNavigate, parcels = [] }) => {
               <>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="bg-indigo-950/40 border border-indigo-800/40 p-3 rounded-xl">
-                    <span className="text-[10px] uppercase font-bold text-indigo-300">Mean Confidence</span>
-                    <div className="text-2xl font-black text-indigo-200 mt-0.5 font-mono">
+                    <span className="text-[10px] uppercase font-bold text-indigo-700">Mean Confidence</span>
+                    <div className="text-2xl font-black text-indigo-700 mt-0.5 font-mono">
                       {aiResults.meanConfidence}%
                     </div>
                   </div>
                   <div className="bg-emerald-950/40 border border-emerald-800/40 p-3 rounded-xl">
-                    <span className="text-[10px] uppercase font-bold text-emerald-300">Parcels Segmented</span>
-                    <div className="text-2xl font-black text-emerald-200 mt-0.5 font-mono">
+                    <span className="text-[10px] uppercase font-bold text-emerald-500">Parcels Segmented</span>
+                    <div className="text-2xl font-black text-emerald-500 mt-0.5 font-mono">
                       {aiResults.detectedParcelsCount} Plots
                     </div>
                   </div>
