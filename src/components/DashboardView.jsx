@@ -112,7 +112,7 @@ export const DashboardView = ({
             <span>Total Parcels</span>
             <Layers className="w-4 h-4 text-emerald-400" />
           </div>
-          <div className="text-2xl font-black text-white font-mono">{stats?.totalParcels || 0}</div>
+          <div className="text-2xl font-black text-black font-mono">{stats?.totalParcels || 0}</div>
           <div className="text-[10px] text-slate-400 mt-0.5">{stats?.totalCadastralAreaAcre || 0} Total Acres</div>
         </div>
 
