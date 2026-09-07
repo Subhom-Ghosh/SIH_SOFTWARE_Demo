@@ -24,6 +24,8 @@ export const ComparisonView = ({
   const [overlaySlider, setOverlaySlider] = useState(50); // 0 = 100% Cadastral, 100 = 100% Resurvey
 
   const currentParcel = parcels.find(p => p.id === activeParcelId) || parcels[0];
+  const hasMismatch = currentParcel?.surveyStatus === 'Mismatch' || currentParcel?.surveyStatus === 'Disputed';
+  const isPendingVerification = currentParcel?.surveyStatus === 'Pending Verification';
 
   // GIS comparison computation
   const comparison = currentParcel && currentParcel.surveyedGeometry
@@ -122,9 +124,9 @@ export const ComparisonView = ({
     if (currentParcel.surveyedGeometry) {
       const surLatLngs = currentParcel.surveyedGeometry.coordinates[0].map(([lng, lat]) => [lat, lng]);
       L.polygon(surLatLngs, {
-        color: comparison.isMismatch ? '#f43f5e' : '#10b981',
+        color: hasMismatch ? '#f43f5e' : isPendingVerification ? '#f59e0b' : '#10b981',
         weight: 3,
-        fillColor: comparison.isMismatch ? '#f43f5e' : '#10b981',
+        fillColor: hasMismatch ? '#f43f5e' : isPendingVerification ? '#f59e0b' : '#10b981',
         fillOpacity: 0.4
       }).addTo(mapR);
     }
@@ -206,9 +208,9 @@ export const ComparisonView = ({
     if (currentParcel.surveyedGeometry) {
       const surLatLngs = currentParcel.surveyedGeometry.coordinates[0].map(([lng, lat]) => [lat, lng]);
       const surPoly = L.polygon(surLatLngs, {
-        color: comparison.isMismatch ? '#f43f5e' : '#10b981',
+        color: hasMismatch ? '#f43f5e' : isPendingVerification ? '#f59e0b' : '#10b981',
         weight: 3,
-        fillColor: comparison.isMismatch ? '#f43f5e' : '#10b981',
+        fillColor: hasMismatch ? '#f43f5e' : isPendingVerification ? '#f59e0b' : '#10b981',
         fillOpacity: (overlaySlider) / 200 + 0.1
       }).addTo(map);
       overlaySurveyedPolygonRef.current = surPoly;
@@ -242,7 +244,7 @@ export const ComparisonView = ({
       overlayCadastralPolygonRef.current = null;
       overlaySurveyedPolygonRef.current = null;
     };
-  }, [viewMode, currentParcel]);
+  }, [viewMode, currentParcel, hasMismatch, isPendingVerification]);
 
   // Dynamically update overlay opacities when slider changes without recreating the map
   useEffect(() => {
@@ -343,7 +345,7 @@ export const ComparisonView = ({
                 <span className="w-3 h-3 rounded-full bg-cyan-500/40 border border-cyan-400"></span>
                 <span>Resurvey Boundary</span>
               </span>
-              {comparison.isMismatch && (
+              {hasMismatch && (
                 <span className="flex items-center gap-1.5 text-rose-400 font-semibold">
                   <span className="w-3 h-3 rounded-full bg-rose-500/60 border border-rose-500 animate-pulse"></span>
                   <span>Discrepancy</span>
@@ -411,7 +413,7 @@ export const ComparisonView = ({
         <div className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
           <div className="space-y-4">
             {/* Status Announcement Banner */}
-            {comparison.isMismatch ? (
+            {hasMismatch ? (
               <div className="bg-rose-950/50 border border-rose-800/80 rounded-xl p-4">
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2 text-rose-400 font-black text-sm uppercase tracking-wide">
@@ -431,6 +433,16 @@ export const ComparisonView = ({
                 <div className="mt-2 text-[10px] font-bold text-amber-300 bg-amber-950/60 px-2 py-1 rounded border border-amber-800/40">
                   Status: "Pending Field Verification" (No automated legal title change)
                 </div>
+              </div>
+            ) : isPendingVerification ? (
+              <div className="bg-amber-950/40 border border-amber-800/60 rounded-xl p-4">
+                <div className="flex items-center gap-2 text-amber-400 font-black text-sm uppercase tracking-wide">
+                  <AlertTriangle className="w-4 h-4" />
+                  <span>PENDING VERIFICATION</span>
+                </div>
+                <p className="text-[11px] text-amber-200 mt-1">
+                  This parcel has not been field-verified yet. The geometric measurements below are for review only.
+                </p>
               </div>
             ) : (
               <div className="bg-emerald-950/40 border border-emerald-800/60 rounded-xl p-4">
@@ -468,7 +480,7 @@ export const ComparisonView = ({
                 </div>
 
                 <div className={`p-2 rounded-lg border ${
-                  comparison.isMismatch
+                  hasMismatch
                     ? 'bg-rose-950/40 font-bold border-rose-800/50 text-rose-600'
                     : 'bg-emerald-950/40 border-emerald-800/50 text-emerald-300'
                 }`}>

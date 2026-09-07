@@ -229,7 +229,7 @@ export const GisMapView = ({
         poly.addTo(layersGroupRef.current.cadastral);
       }
 
-      // 2. Modern Surveyed RTK Layer (Cyan/Emerald/Rose based on status)
+      // 2. Modern Surveyed RTK Layer (status-based colors)
       if (showSurveyed && parcel.surveyedGeometry) {
         const latLngs = parcel.surveyedGeometry.coordinates[0].map(([lng, lat]) => [lat, lng]);
 
@@ -239,6 +239,9 @@ export const GisMapView = ({
         if (parcel.surveyStatus === 'Verified') {
           strokeColor = '#10b981'; // emerald
           fillColor = '#10b981';
+        } else if (parcel.surveyStatus === 'Pending Verification') {
+          strokeColor = '#f59e0b'; // amber
+          fillColor = '#f59e0b';
         } else if (parcel.surveyStatus === 'Mismatch') {
           strokeColor = '#f43f5e'; // rose
           fillColor = '#f43f5e';

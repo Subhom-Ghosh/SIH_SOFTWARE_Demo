@@ -201,7 +201,9 @@ export const Sidebar = ({
           <span>Survey Paradigm:</span>
           <span className="text-emerald-400 font-semibold">Detect → Compare → Verify → Update</span>
         </div>
+       
       </div>
+      
     </aside>
     </>
   );

@@ -18,6 +18,7 @@ export const OwnershipMutationView = ({
   const [activeTab, setActiveTab] = useState('khasra');
   const [selectedParcelId, setSelectedParcelId] = useState(parcels[0]?.id || 'p-101');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [highlightedMutationId, setHighlightedMutationId] = useState(null);
 
   // New Mutation Form State
   const [mutationType, setMutationType] = useState('Inheritance (Virasat)');
@@ -49,6 +50,8 @@ export const OwnershipMutationView = ({
     if (onAddMutation) {
       onAddMutation(newMut);
     }
+    setHighlightedMutationId(newMut.id);
+    setActiveTab('mutations');
     setShowAddModal(false);
     setApplicantName('');
     alert(`Mutation petition ${newMut.id} filed successfully for plot ${newMut.plotNumber}.`);
@@ -271,9 +274,25 @@ export const OwnershipMutationView = ({
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60 text-slate-200">
-                {mutations.map((m) => (
-                  <tr key={m.id} className="hover:bg-slate-800/50 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold text-black">{m.id}</td>
+                {mutations.map((m) => {
+                  const isNewMutation = m.id === highlightedMutationId;
+
+                  return (
+                  <tr key={m.id} className={`transition-colors ${
+                    isNewMutation
+                      ? 'bg-emerald-950/50 ring-1 ring-inset ring-emerald-500/60'
+                      : 'hover:bg-slate-800/50'
+                  }`}>
+                    <td className="py-3 px-4 font-mono font-bold text-black">
+                      <div className="flex items-center gap-2">
+                        <span>{m.id}</span>
+                        {isNewMutation && (
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-500 text-slate-950 text-[9px] font-black uppercase">
+                            New
+                          </span>
+                        )}
+                      </div>
+                    </td>
                     <td className="py-3 px-4 font-mono font-bold text-emerald-500">{m.plotNumber}</td>
                     <td className="py-3 px-4 font-semibold text-slate-200">{m.mutationType}</td>
                     <td className="py-3 px-4 text-slate-400">{m.previousOwner}</td>
@@ -293,7 +312,8 @@ export const OwnershipMutationView = ({
                     </td>
                     <td className="py-3 px-4 font-mono text-slate-400">{m.documentReference}</td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>
