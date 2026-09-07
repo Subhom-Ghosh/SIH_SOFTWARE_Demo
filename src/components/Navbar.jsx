@@ -42,7 +42,7 @@ export const Navbar = ({
               <img
                 src="/assets/aistudio/image.png"
                 alt="BhuRaksha logo"
-                className="w-5 h-5 object-contain group-hover:scale-110 transition-transform"
+                className="w-9 h-9 object-contain group-hover:scale-110 transition-transform"
               />
             </div>
           </div>
