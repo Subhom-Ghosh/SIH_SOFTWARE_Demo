@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Smartphone,
   CheckCircle2,
@@ -15,6 +15,7 @@ export const FieldVerificationView = ({
   parcels = [],
   selectedParcel = null,
   onSelectParcel,
+  onNavigate,
   currentUser = { id: 'USR-02', name: 'Suresh Patel', designation: 'Field Survey Officer' },
   onVerificationSubmitted
 }) => {
@@ -43,6 +44,22 @@ export const FieldVerificationView = ({
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
 
   const currentParcel = parcels.find(p => p.id === activeParcelId) || parcels[0];
+
+  useEffect(() => {
+    if (!currentParcel) return;
+
+    if (currentParcel.surveyStatus === 'Pending Verification') {
+      setSelectedResult('Possible Encroachment');
+      return;
+    }
+
+    const supportedResultTypes = ['Verified Match', 'Boundary Mismatch', 'Area Mismatch', 'Possible Encroachment', 'Dispute'];
+    setSelectedResult(
+      supportedResultTypes.includes(currentParcel.mismatchType)
+        ? currentParcel.mismatchType
+        : 'Area Mismatch'
+    );
+  }, [activeParcelId, currentParcel]);
 
   const handleCaptureGPS = () => {
     if (navigator.geolocation) {
@@ -108,8 +125,12 @@ export const FieldVerificationView = ({
       if (onVerificationSubmitted) {
         onVerificationSubmitted(data);
       }
-      setSubmittedSuccess(true);
-      setTimeout(() => setSubmittedSuccess(false), 4000);
+      if (onNavigate) {
+        onNavigate('verification-records');
+      } else {
+        setSubmittedSuccess(true);
+        setTimeout(() => setSubmittedSuccess(false), 4000);
+      }
     } catch (err) {
       console.error('Error submitting field verification:', err);
       alert('Verification record saved locally.');
@@ -407,7 +428,14 @@ export const FieldVerificationView = ({
           {submittedSuccess && (
             <div className="bg-emerald-950/80 border border-emerald-500 text-emerald-800 text-xs p-3 font-extrabold rounded-xl flex items-center gap-2 animate-in fade-in">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Field verification logged successfully! Status updated in Digital Land Information System.</span>
+              <span className="flex-1">Field verification logged successfully! Status updated in Digital Land Information System.</span>
+              <button
+                type="button"
+                onClick={() => onNavigate && onNavigate('verification-records')}
+                className="shrink-0 rounded-lg bg-emerald-500 px-2.5 py-1.5 text-[11px] font-bold text-slate-950 hover:bg-emerald-400"
+              >
+                View Submitted Record
+              </button>
             </div>
           )}
         </form>

@@ -10,6 +10,7 @@ import { FieldVerificationView } from './components/FieldVerificationView';
 import { OwnershipMutationView } from './components/OwnershipMutationView';
 import { AiSegmentationView } from './components/AiSegmentationView';
 import { SurveyManagementView } from './components/SurveyManagementView';
+import { FieldVerificationRecordsView } from './components/FieldVerificationRecordsView';
 
 
 export function App() {
@@ -80,12 +81,13 @@ export function App() {
   // Fetch initial data from backend API
   const fetchData = async () => {
     try {
-      const [parcelsRes, statsRes, mismatchesRes, surveysRes, mutationsRes] = await Promise.all([
+      const [parcelsRes, statsRes, mismatchesRes, surveysRes, mutationsRes, verificationsRes] = await Promise.all([
         fetch('/api/parcels'),
         fetch('/api/dashboard/statistics'),
         fetch('/api/mismatches'),
         fetch('/api/surveys'),
-        fetch('/api/mutations')
+        fetch('/api/mutations'),
+        fetch('/api/field-verification')
       ]);
 
       if (parcelsRes.ok) {
@@ -107,6 +109,10 @@ export function App() {
       if (mutationsRes.ok) {
         const mutationsData = await mutationsRes.json();
         setMutations(mutationsData);
+      }
+      if (verificationsRes.ok) {
+        const verificationsData = await verificationsRes.json();
+        setVerifications(verificationsData);
       }
     } catch (err) {
       console.warn('Using local fallback state:', err);
@@ -183,10 +189,28 @@ export function App() {
 
   // Handle Field Verification Submission
   const handleVerificationSubmitted = (verification) => {
-    setVerifications([verification, ...verifications]);
+    setVerifications((existingVerifications) => [verification, ...existingVerifications]);
     // update parcel status if verified
     if (verification.result === 'Verified Match') {
       setParcels(parcels.map(p => p.id === verification.parcelId ? { ...p, surveyStatus: 'Verified' } : p));
+    }
+  };
+
+  const handleVerificationStatusChange = async (verificationId, status) => {
+    try {
+      const response = await fetch(`/api/field-verification/${verificationId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (!response.ok) throw new Error('Unable to update verification status.');
+      const updatedVerification = await response.json();
+      setVerifications((existingVerifications) => existingVerifications.map((verification) => (
+        verification.id === updatedVerification.id ? updatedVerification : verification
+      )));
+    } catch (err) {
+      console.error('Error updating verification status:', err);
+      alert('The official status could not be updated.');
     }
   };
 
@@ -265,6 +289,15 @@ export function App() {
               onSelectParcel={setSelectedParcel}
               currentUser={currentUser}
               onVerificationSubmitted={handleVerificationSubmitted}
+              onNavigate={setActiveView}
+            />
+          )}
+
+          {activeView === 'verification-records' && (
+            <FieldVerificationRecordsView
+              verifications={verifications}
+              onNavigate={setActiveView}
+              onStatusChange={handleVerificationStatusChange}
             />
           )}
 

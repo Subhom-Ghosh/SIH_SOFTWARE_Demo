@@ -325,6 +325,24 @@ async function startServer() {
     res.status(201).json(newVerification);
   });
 
+  app.patch('/api/field-verification/:id/status', (req: Request, res: Response) => {
+    const allowedStatuses = ['Submitted', 'Reviewed', 'Action Taken'];
+    const { status } = req.body;
+    if (!allowedStatuses.includes(status)) {
+      res.status(400).json({ error: 'Invalid verification status.' });
+      return;
+    }
+
+    const verification = fieldVerifications.find((item) => item.id === req.params.id);
+    if (!verification) {
+      res.status(404).json({ error: 'Verification record not found.' });
+      return;
+    }
+
+    verification.status = status;
+    res.json(verification);
+  });
+
   // 6. Mutation Records
   app.get('/api/mutation-records', (_req: Request, res: Response) => {
     res.json(mutations);

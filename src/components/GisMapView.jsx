@@ -421,6 +421,8 @@ export const GisMapView = ({
     setMeasuredMetrics(null);
   };
 
+  const hasPossibleEncroachment = selectedParcel?.mismatchType === 'Possible Encroachment';
+
   return (
     <div className="relative w-full h-[calc(100dvh-80px)] sm:h-[calc(100vh-80px)] flex overflow-hidden bg-slate-950">
       {/* Leaflet Map Canvas */}
@@ -608,10 +610,16 @@ export const GisMapView = ({
                     Disputed
                   </span>
                 )}
-                {selectedParcel.surveyStatus === 'Pending Verification' && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-950 text-amber-300 border border-amber-800 text-xs font-bold">
-                    <Clock className="w-3.5 h-3.5 text-amber-400" />
-                    Pending
+                {hasPossibleEncroachment && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-950 text-red-300 border border-red-800 text-xs font-bold">
+                    <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+                    Possible Encroachment
+                  </span>
+                )}
+                {selectedParcel.surveyStatus === 'Pending Verification' && !hasPossibleEncroachment && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-950 text-red-300 border border-red-800 text-xs font-bold">
+                    <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+                    Possible Encroachment
                   </span>
                 )}
               </div>
@@ -651,7 +659,7 @@ export const GisMapView = ({
               </div>
 
               {/* Mismatch Alert Box if present */}
-              {selectedParcel.surveyStatus === 'Mismatch' || selectedParcel.surveyStatus === 'Disputed' ? (
+              {hasPossibleEncroachment || selectedParcel.surveyStatus === 'Mismatch' || selectedParcel.surveyStatus === 'Disputed' ? (
                 <div className="bg-red-950/40 border border-rose-900/60 p-3 rounded-xl animate-pulse">
                   <div className="flex items-center gap-1.5 text-red-600 font-bold text-xs mb-1">
                     <AlertTriangle className="w-4 h-4 shrink-0" />

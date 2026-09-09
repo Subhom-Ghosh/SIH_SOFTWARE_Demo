@@ -9,6 +9,7 @@ import {
   Sparkles,
   Plane,
   FileCode2,
+  ClipboardCheck,
   Database,
   RefreshCw,
   MoreVertical,
@@ -60,6 +61,13 @@ export const Sidebar = ({
       subtitle: 'On-Site GPS & Photo Evidence',
       icon: Smartphone,
       badge: 'Live'
+    },
+    {
+      id: 'verification-records',
+      label: 'Verification Records',
+      subtitle: 'Submitted Field Reports',
+      icon: ClipboardCheck,
+      badge: null
     },
     {
       id: 'mutations',
